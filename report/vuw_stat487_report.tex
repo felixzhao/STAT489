@@ -299,6 +299,24 @@ In this section, we use
 
 % diff dist
 \subsubsection*{different distribution with same cuts}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|c|c|c}
+            & \textbf{Reference} & 1 & 2 \\
+  \hline
+  \textbf{Prediction} & 1 & 147 & 0 \\
+                      & 2 & 0 & 153 \\
+  \end{tabular}
+  \caption{Confusion matrix showing predictions vs references.}
+  \label{tab:confusion_matrix}
+  \end{table}
+  
+  \vspace{0.5cm} % Adds some vertical space between the table and the text
+  
+  \noindent\textbf{Overall Statistics:} \\
+  Accuracy: 1
+
 \begin{figure}[h]
   \centering
   \begin{subfigure}{0.8\textwidth}
@@ -311,6 +329,24 @@ In this section, we use
 
 % close dist
 \subsubsection*{different distribution with close center}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{c|c|c|c}
+            & \textbf{Reference} & 1 & 2 \\
+  \hline
+  \textbf{Prediction} & 1 & 144 & 0 \\
+                      & 2 & 3 & 153 \\
+  \end{tabular}
+  \caption{Confusion matrix showing predictions vs references.}
+  \label{tab:confusion_matrix}
+  \end{table}
+  
+  \vspace{0.5cm} % Adds some vertical space between the table and the text
+  
+  \noindent\textbf{Overall Statistics:} \\
+  Accuracy: 0.99
+
 \begin{figure}[h]
   \centering
   \begin{subfigure}{0.8\textwidth}
@@ -323,6 +359,7 @@ In this section, we use
 
 % far dist
 \subsubsection*{different distribution with far center}
+
 \begin{figure}[h]
   \centering
   \begin{subfigure}{0.8\textwidth}
@@ -335,6 +372,8 @@ In this section, we use
 
 \subsubsection{row cluster with column effects}
 
+
+\subsection{Labeling switch}
 
 \section{Conclusion and Future Directions}
 
