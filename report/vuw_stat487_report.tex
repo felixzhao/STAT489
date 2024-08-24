@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{graphicx, amsmath}
+\usepackage{subcaption}
 
 % 0. Referencing style, APA-like referencing
 \usepackage[backend=biber, style=apa, natbib=true]{biblatex}
@@ -175,6 +176,108 @@ The model's accuracy is measured by how well the predicted clusters match the ac
 \subsection{Data Simulations}
 
 \subsubsection{Simulation by Model Parameters}
+
+In this section, we use 
+
+\subsubsection*{different $\alpha$ value}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/alpha_-1_1.png}
+      \caption{$\alpha$: (-1, 1)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/alpha_0_-1.png}
+      \caption{$\alpha$: (0, -1)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/alpha_1_0.png}
+      \caption{$\alpha$: (1, 0)}
+  \end{subfigure}
+  \caption{effect to cluster distribution from difference $\alpha$ value}
+  \label{fig:alpha}
+\end{figure}
+
+% mu
+\subsubsection*{different $\mu$ value}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/mu_0_06_03.png}
+      \caption{$\mu$: (0, 0.6, 0.3)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/mu_0_03_06.png}
+      \caption{$\mu$: (0, 0.3, 0.6)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/mu_03_06_01.png}
+      \caption{$\mu$: (0.3, 0.6, 0.1)}
+  \end{subfigure}
+  \caption{effect to cluster distribution from difference $\mu$ value}
+  \label{fig:mu}
+\end{figure}
+
+% phi
+\subsubsection*{different $\phi$ value}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/phi_0_08_1.png}
+      \caption{$\phi$: (0, 0.8, 0.1)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/phi_0_05_1.png}
+      \caption{$\phi$: (0, 0.5, 1)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/phi_0_02_1.png}
+      \caption{$\phi$: (0, 0.2, 0.1)}
+  \end{subfigure}
+  \caption{effect to cluster distribution from difference $\phi$ value}
+  \label{fig:phi}
+\end{figure}
+
+
+% pi
+\subsubsection*{different $\pi$ value}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/pi_03_07.png}
+      \caption{$\pi$: (0.3, 0.7)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/pi_05_05.png}
+      \caption{$\pi$: (0.5, 0.5)}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/pi_07_03.png}
+      \caption{$\pi$: (0.7, 0.3)}
+  \end{subfigure}
+  \caption{effect to cluster distribution from difference $\pi$ value}
+  \label{fig:pi}
+\end{figure}
 
 \subsubsection{Simulation from Cluster Distributions}
 
