@@ -188,13 +188,17 @@ This parameters are applied to one Y.
 
 \subsubsection{Simulation by Model Parameters}
 
-In this section, we control all parameters but adjusting $\alpha$.
-From Figure~\ref{fig:alpha} we can see clearly, 
-with alpha value of each cluster increase, 
-the density of each cluster are more different.
+In this section, we control all parameters but adjusting one parameter value. 
+e.g. $\alpha$. To show the effects of data density from this parameter adjusting.
+
+
 
 
 \subsubsection*{different $\alpha$ value}
+In OSM the sum of alpha must equal to Zero.
+From Figure~\ref{fig:alpha} we can see clearly, 
+with $\alpha$ value of each cluster increase, 
+the density of each cluster are more different.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
@@ -207,24 +211,14 @@ the density of each cluster are more different.
 
 % mu
 \subsubsection*{different $\mu$ value}
+In Figure~\ref{fig:mu} shows 
+with $\mu$ 
+ TODO: Not clear effects
 \begin{figure}[h]
   \centering
-  \begin{subfigure}{0.3\textwidth}
+  \begin{subfigure}{1.0\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/mu_0_06_03.png}
-      \caption{$\mu$: (0, 0.6, 0.3)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/mu_0_03_06.png}
-      \caption{$\mu$: (0, 0.3, 0.6)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/mu_03_06_01.png}
-      \caption{$\mu$: (0.3, 0.6, 0.1)}
+      \includegraphics[width=\textwidth]{images/para_sim/mu.png}
   \end{subfigure}
   \caption{effect to cluster distribution from difference $\mu$ value}
   \label{fig:mu}
@@ -232,24 +226,14 @@ the density of each cluster are more different.
 
 % phi
 \subsubsection*{different $\phi$ value}
+In Figure~\ref{fig:phi} shows
+with $\phi$ value of each cluster increase, 
+the density of each cluster are more different.
 \begin{figure}[h]
   \centering
-  \begin{subfigure}{0.3\textwidth}
+  \begin{subfigure}{1.0\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/phi_0_08_1.png}
-      \caption{$\phi$: (0, 0.8, 0.1)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/phi_0_05_1.png}
-      \caption{$\phi$: (0, 0.5, 1)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/phi_0_02_1.png}
-      \caption{$\phi$: (0, 0.2, 0.1)}
+      \includegraphics[width=\textwidth]{images/para_sim/phi.png}
   \end{subfigure}
   \caption{effect to cluster distribution from difference $\phi$ value}
   \label{fig:phi}
@@ -258,24 +242,13 @@ the density of each cluster are more different.
 
 % pi
 \subsubsection*{different $\pi$ value}
+In Figure~\ref{fig:pi} shows
+ TODO: Not clear effects
 \begin{figure}[h]
   \centering
-  \begin{subfigure}{0.3\textwidth}
+  \begin{subfigure}{1.0\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/pi_03_07.png}
-      \caption{$\pi$: (0.3, 0.7)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/pi_05_05.png}
-      \caption{$\pi$: (0.5, 0.5)}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.3\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/pi_07_03.png}
-      \caption{$\pi$: (0.7, 0.3)}
+      \includegraphics[width=\textwidth]{images/para_sim/pi.png}
   \end{subfigure}
   \caption{effect to cluster distribution from difference $\pi$ value}
   \label{fig:pi}
