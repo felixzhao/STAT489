@@ -346,12 +346,29 @@ TODO: plot 10 Ys
 
 \subsubsection{Simulation from Cluster Distributions}
 
-\subsection{Prediction}
+In order to better simulate the actual situation.
+In this work, we introduced another approach to simulation the ordinal data 
+for our prediction experiments. 
+This approach is based on assume the data in each cluster are following 
+a known distribution with known parameter of that distribution.
+And the value of each categories are selected by cuts which same to each clusters.
 
-\subsubsection{row cluster}
+In Cluster distributions, our work is based on two clusters and three categories.
+
+There are 4 difference cluster distributions settings, which shown in 
+Figure~\ref*{fig:same_dist} clusters follow same distribution $N(0, 1)$ 
+with same two cuts at $-1$ and $1$,
+Figure~\ref*{fig:diff_dist} clusters follow different distribution $N(-1,1)$ and $N(-1.5,2)$
+with same two cuts at $-1$ and $1$,
+
+Figure~\ref*{fig:close_dist} clusters follow different distribution with closer means $N(0,6)$ and $N(3,8)$
+with same two cuts at $0$ and $2.5$,
+
+Figure~\ref*{fig:far_dist} clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
+with same two cuts at $1$ and $2.5$,
 
 % same dist
-\subsubsection*{Same distribution with same cuts}
+% \subsubsection*{Same distribution with same cuts}
 \begin{figure}[h]
   \centering
   \begin{subfigure}{0.8\textwidth}
@@ -363,6 +380,46 @@ TODO: plot 10 Ys
 \end{figure}
 
 % diff dist
+% \subsubsection*{different distribution with same cuts}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/dist_simu/3--1_1_15_2.png}
+  \end{subfigure}
+  \caption{clusters follow different distribution with same cuts}
+  \label{fig:diff_dist}
+\end{figure}
+
+% close dist
+% \subsubsection*{different distribution with close center}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/dist_simu/1-0_6-3_8.png}
+  \end{subfigure}
+  \caption{clusters follow different distribution with close center}
+  \label{fig:close_dist}
+\end{figure}
+
+% far dist
+% \subsubsection*{different distribution with far center}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/dist_simu/2-0_1-4_2.png}
+  \end{subfigure}
+  \caption{clusters follow different distribution with far center}
+  \label{fig:far_dist}
+\end{figure}
+
+\subsection{Prediction}
+
 \subsubsection*{different distribution with same cuts}
 
 \begin{table}[h]
@@ -382,58 +439,26 @@ TODO: plot 10 Ys
   \noindent\textbf{Overall Statistics:} \\
   Accuracy: 1
 
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/3--1_1_15_2.png}
-  \end{subfigure}
-  \caption{clusters follow different distribution with same cuts}
-  \label{fig:diff_dist}
-\end{figure}
-
-% close dist
 \subsubsection*{different distribution with close center}
 
-\begin{table}[h]
-  \centering
-  \begin{tabular}{c|c|c|c}
-            & \textbf{Reference} & 1 & 2 \\
-  \hline
-  \textbf{Prediction} & 1 & 144 & 0 \\
-                      & 2 & 3 & 153 \\
-  \end{tabular}
-  \caption{Confusion matrix showing predictions vs references.}
-  \label{tab:confusion_matrix}
-  \end{table}
-  
-  \vspace{0.5cm} % Adds some vertical space between the table and the text
-  
-  \noindent\textbf{Overall Statistics:} \\
-  Accuracy: 0.99
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 144 & 0 \\
+                        & 2 & 3 & 153 \\
+    \end{tabular}
+    \caption{Confusion matrix showing predictions vs references.}
+    \label{tab:confusion_matrix}
+    \end{table}
+    
+    \vspace{0.5cm} % Adds some vertical space between the table and the text
+    
+    \noindent\textbf{Overall Statistics:} \\
+    Accuracy: 0.99
 
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/1-0_6-3_8.png}
-  \end{subfigure}
-  \caption{clusters follow different distribution with close center}
-  \label{fig:close_dist}
-\end{figure}
-
-% far dist
-\subsubsection*{different distribution with far center}
-
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
-      \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/2-0_1-4_2.png}
-  \end{subfigure}
-  \caption{clusters follow different distribution with far center}
-  \label{fig:far_dist}
-\end{figure}
+\subsubsection{row cluster}
 
 \subsubsection{row cluster with column effects}
 
