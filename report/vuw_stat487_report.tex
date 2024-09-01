@@ -175,30 +175,67 @@ The model's accuracy is measured by how well the predicted clusters match the ac
 
 \subsection{Data Simulations}
 
-In this section, our experiment are based on the data which generated from a given OSM parameters to analysis the effect of the cluster and categories distribution. we use default parameters as 
-$G=2, 
-    q=3, 
-    \alpha=c(1,-1), 
-    \beta=c(0),
-    \mu=c(0.1, 0.2, 0.7) ,
-    \phi=c(0, 0.2, 1) and 
-    \pi = c(0.3, 0.7)$
-
-This parameters are applied to one Y.
+In this section, we conduct experiments based on data generated from specified OSM parameters to analyze the effects of cluster and category distributions.
 
 \subsubsection{Simulation by Model Parameters}
+We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameter $\alpha$. The default parameters used in the simulations are as follows:
+\[
+\begin{aligned}
+G &= 2, \\
+q &= 3, \\
+\alpha &= \mathbf{c}(1, -1), \\
+\beta &= \mathbf{c}(0), \\
+\mu &= \mathbf{c}(0.1, 0.2, 0.7), \\
+\phi &= \mathbf{c}(0, 0.2, 1), \\
+\pi &= \mathbf{c}(0.3, 0.7).
+\end{aligned}
+\]
+All parameters except for $\beta$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
 
-In this section, we control all parameters but adjusting one parameter value. 
-e.g. $\alpha$. To show the effects of data density from this parameter adjusting.
+\subsubsection*{Effect of Different $\alpha$ Values}
+In the OSM framework, the sum of the $\alpha$ parameters is constrained to equal zero. 
+We examine the impact of varying the $\alpha$ values using the following configurations:
+\[
+\begin{aligned}
+\alpha_1 &= \mathbf{c}(-0.1, 0.1), \\
+\alpha_2 &= \mathbf{c}(-1, 1), \\
+\alpha_3 &= \mathbf{c}(-3, 3).
+\end{aligned}
+\]
+As shown in Figure~\ref{fig:alpha}, increasing the difference between the $\alpha$ values across clusters results in greater divergence in the density distributions of each cluster. This effect illustrates the sensitivity of cluster density to changes in the $\alpha$ parameter.
+
+% \subsection{Data Simulations}
+
+% In this section, our experiment are based on the data which generated from a given OSM parameters to analysis the effect of the cluster and categories distribution. we use default parameters as 
+% $G=2, 
+%     q=3, 
+%     \alpha=c(1,-1), 
+%     \beta=c(0),
+%     \mu=c(0.1, 0.2, 0.7) ,
+%     \phi=c(0, 0.2, 1) and 
+%     \pi = c(0.3, 0.7)$
+
+% This parameters are applied to one Y.
+
+% \subsubsection{Simulation by Model Parameters}
+
+% In this section, we control all parameters but adjusting one parameter value. 
+% e.g. $\alpha$. To show the effects of data density from this parameter adjusting.
 
 
 
 
-\subsubsection*{different $\alpha$ value}
-In OSM the sum of alpha must equal to Zero.
-From Figure~\ref{fig:alpha} we can see clearly, 
-with $\alpha$ value of each cluster increase, 
-the density of each cluster are more different.
+% \subsubsection*{different $\alpha$ value}
+% In OSM the sum of alpha must equal to Zero.
+% We select alpha value in 
+% $
+% c(-0.1, 0.1),
+%   c(-1,1), 
+%   c(-3,3)
+% $.
+% From Figure~\ref{fig:alpha} we can see clearly, 
+% with difference of each $\alpha$ value of each cluster increase, 
+% the density of each cluster are more different.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
@@ -210,10 +247,39 @@ the density of each cluster are more different.
 \end{figure}
 
 % mu
-\subsubsection*{different $\mu$ value}
-In Figure~\ref{fig:mu} shows 
-with $\mu$ 
- TODO: Not clear effects
+\subsubsection*{Effect of Different $\mu$ Values}
+To investigate the impact of varying $\mu$ values on the cluster distributions, 
+we consider the following configurations:
+\[
+\begin{aligned}
+\mu_1 &= \mathbf{c}(0.1, 0.3, 0.6), \\
+\mu_2 &= \mathbf{c}(0.3, 0.3, 0.3), \\
+\mu_3 &= \mathbf{c}(0.6, 0.3, 0.1).
+\end{aligned}
+\]
+Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value orders 
+on the density distribution of each cluster. 
+The results indicate that when the $\mu$ values are arranged in increasing order, 
+the mean density of the categories is lower. Conversely, 
+when the $\mu$ values are ordered in decreasing fashion, 
+the mean density increases. 
+This suggests that the ordering of $\mu$ values significantly influences 
+the density distribution across clusters, 
+with a notable impact on the mean density of each category.
+
+% % mu
+% \subsubsection*{Effect of Different $\mu$ Values}
+% To check the effect of different $mu$ values, 
+% in this work we select 
+% $
+% c(0.1, 0.3, 0.6)
+%   ,c(0.3, 0.3, 0.3)
+%   ,c(0.6, 0.3, 0.1)
+% $
+% In Figure~\ref{fig:mu} shows the order of $mu$ values effects 
+% the density mean of each categories.
+% the density mean is lower when the $mu$ value in increasing order,
+% high when them in descreasing order.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
@@ -225,10 +291,19 @@ with $\mu$
 \end{figure}
 
 % phi
-\subsubsection*{different $\phi$ value}
-In Figure~\ref{fig:phi} shows
-with $\phi$ value of each cluster increase, 
-the density of each cluster are more different.
+\subsubsection*{Effect of Different $\phi$ Values}
+The parameter $\phi$ represents the ordinal effect for each category, reflecting the cumulative probability across ordered categories. Importantly, the $\phi$ values must start from 0. To evaluate the impact of different $\phi$ values, we consider the following configurations:
+\[
+\phi_1 = \mathbf{c}(0, 0.2, 1), \quad \phi_2 = \mathbf{c}(0, 0.5, 1), \quad \phi_3 = \mathbf{c}(0, 0.8, 1).
+\]
+As shown in Figure~\ref{fig:phi}, when the probability associated with the second category increases (as $\phi$ values rise), the density distribution changes significantly between the clusters. Specifically, in Cluster 1, there is a slight decrease in the density of the second category, while Cluster 2 exhibits a clear increase in the density of the same category. This indicates that higher $\phi$ values lead to a greater disparity in the density distributions between the clusters, particularly affecting the category with the increased $\phi$ value.
+
+Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, with a more pronounced effect on the cluster associated with the higher $\phi$ values.
+
+% \subsubsection*{Effect of Different $\phi$ Values}
+% In Figure~\ref{fig:phi} shows
+% with $\phi$ value of each cluster increase, 
+% the density of each cluster are more different.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
@@ -241,7 +316,7 @@ the density of each cluster are more different.
 
 
 % pi
-\subsubsection*{different $\pi$ value}
+\subsubsection*{Effect of Different $\pi$ Values}
 In Figure~\ref{fig:pi} shows
  TODO: Not clear effects
 \begin{figure}[h]
@@ -253,6 +328,21 @@ In Figure~\ref{fig:pi} shows
   \caption{effect to cluster distribution from difference $\pi$ value}
   \label{fig:pi}
 \end{figure}
+
+% beta
+\subsubsection*{different $\beta$ value}
+TODO: plot 10 Ys
+% In Figure~\ref{fig:beta} shows
+%  TODO: Not clear effects
+% \begin{figure}[h]
+%   \centering
+%   \begin{subfigure}{1.0\textwidth}
+%       \centering
+%       \includegraphics[width=\textwidth]{images/para_sim/pi.png}
+%   \end{subfigure}
+%   \caption{effect to cluster distribution from difference $\beta$ value}
+%   \label{fig:beta}
+% \end{figure}
 
 \subsubsection{Simulation from Cluster Distributions}
 
