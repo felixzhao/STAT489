@@ -5,6 +5,8 @@
 
 % 0. Referencing style, APA-like referencing
 \usepackage[backend=biber, style=apa, natbib=true]{biblatex}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \addbibresource{bibliography.bib} % Replace 'yourbibfilename.bib' with your actual .bib file name.
 
 % 1.  Don't need such wide margins.
@@ -420,7 +422,50 @@ with same two cuts at $1$ and $2.5$,
 
 \subsection{Prediction}
 
-\subsubsection*{different distribution with same cuts}
+\subsubsection*{approach}
+
+In this work we split simulation data to training and validation set.
+
+First, EM algorithm has been used to Calculate each parameters value from the training data ($Y$ only).
+
+Then, use the algorithm in Algorithm~\ref{fig:algo} to Calculate the probability of each of categories, cluter and column combination.
+All the probabilities in each cluster are standardized.
+
+At last, for each new observations $Y'$ in validation set are calculate Z score of each category by this probabilities.
+
+\begin{algorithm}
+  \caption{Pseudocode for Calculating Cluster Probabilities}
+  \label{fig:algo}
+  \begin{algorithmic}[1]
+  \STATE Initialize a 3D array \texttt{cluster\_probs} with dimensions $G \times \texttt{number\_of\_y} \times q$ and all elements set to 0.
+  
+  \FOR{$g = 1$ to $G$}
+      \FOR{$j = 1$ to \texttt{number\_of\_y}}
+          \FOR{$k = 1$ to $q$}
+              \IF{$k > 1$}
+                  \STATE Calculate $\texttt{linear} \gets \mu[k] + \phi[k] \times (\alpha[g] + \beta[j])$
+                  \STATE Set $\texttt{cluster\_probs}[g, j, k] \gets \exp(\texttt{linear})$
+              \ELSE
+                  \STATE Set $\texttt{cluster\_probs}[g, j, k] \gets 1$
+              \ENDIF
+          \ENDFOR
+          \STATE Normalize $\texttt{cluster\_probs}[g, j,]$ by dividing each element by the sum of all elements in that row.
+      \ENDFOR
+  \ENDFOR
+  
+  \RETURN \texttt{cluster\_probs}
+  \end{algorithmic}
+  \end{algorithm}
+
+\subsubsection*{Prediction with parameter simulate}
+
+TODO
+
+\subsubsection*{Prediction with same distribution}
+
+TODO
+
+\subsubsection*{Prediction with different distribution}
 
 \begin{table}[h]
   \centering
@@ -439,7 +484,7 @@ with same two cuts at $1$ and $2.5$,
   \noindent\textbf{Overall Statistics:} \\
   Accuracy: 1
 
-\subsubsection*{different distribution with close center}
+\subsubsection*{Prediction with different distribution with close center}
 
   \begin{table}[h]
     \centering
@@ -458,12 +503,28 @@ with same two cuts at $1$ and $2.5$,
     \noindent\textbf{Overall Statistics:} \\
     Accuracy: 0.99
 
-\subsubsection{row cluster}
+\subsubsection*{Prediction with different distribution with far center}
 
-\subsubsection{row cluster with column effects}
+TODO
+
+\subsubsection*{Prediction with larger number of Ys}
+
+TODO
+
+\subsection{Other topic may need to explained}
+
+\subsubsection{Row cluster}
+
+TODO
+
+\subsubsection{Row cluster with column effects}
+
+TODO
 
 
 \subsection{Labeling switch}
+
+TODO
 
 \section{Conclusion and Future Directions}
 
