@@ -424,15 +424,14 @@ with same two cuts at $1$ and $2.5$,
 
 \subsubsection*{approach}
 
-In this work we split simulation data to training and validation set.
+In this study, we divided the simulated data into training and validation sets.
 
-First, EM algorithm has been used to Calculate each parameters value from the training data ($Y$ only).
+First, the Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data, using only the response variable $Y$.
 
-Then, use the algorithm in Algorithm~\ref{fig:algo} to Calculate the probability of each of categories, cluter and column combination.
-All the probabilities in each cluster are standardized.
+Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, and column combination. 
+These probabilities were then standardized within each cluster.
 
-At last, for each new observations $Y'$ in validation set are calculate Z score of each category by this probabilities.
-
+Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each category using these standardized probabilities.
 \begin{algorithm}
   \caption{Pseudocode for Calculating Cluster Probabilities}
   \label{fig:algo}
