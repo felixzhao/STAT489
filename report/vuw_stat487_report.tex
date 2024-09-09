@@ -234,23 +234,11 @@ we consider the following configurations:
 \]
 Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value.
 It shows the category has high $mu$ value leading to high probability of sample.
-we also can see, $\mu_1$ and $\mu_2$ plots are showing left and right mirror. 
-( TODO: No sure the reason, need to double confirm.)
+we also can see, $\mu_1$ and $\mu_3$ plots are showing left and right mirror. 
+and the $\mu_2$ is in the middle.
+( TODO: This is related to defalut $phi$ value. 
+Need to check the detial reason.)
 
-
-% % mu
-% \subsubsection*{Effect of Different $\mu$ Values}
-% To check the effect of different $mu$ values, 
-% in this work we select 
-% $
-% c(0.1, 0.3, 0.6)
-%   ,c(0.3, 0.3, 0.3)
-%   ,c(0.6, 0.3, 0.1)
-% $
-% In Figure~\ref{fig:mu} shows the order of $mu$ values effects 
-% the density mean of each categories.
-% the density mean is lower when the $mu$ value in increasing order,
-% high when them in descreasing order.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
@@ -263,18 +251,24 @@ we also can see, $\mu_1$ and $\mu_2$ plots are showing left and right mirror.
 
 % phi
 \subsubsection*{Effect of Different $\phi$ Values}
-The parameter $\phi$ represents the ordinal effect for each category, reflecting the cumulative probability across ordered categories. Importantly, the $\phi$ values must start from 0. To evaluate the impact of different $\phi$ values, we consider the following configurations:
+The parameter $\phi$ represents the ordinal effect for each category, reflecting the cumulative probability across ordered categories. 
+Importantly, the $\phi$ values must start from 0 and the $\phi$ value of the last category must be 1. 
+To evaluate the impact of different $\phi$ values, we consider the following configurations:
 \[
 \phi_1 = \mathbf{c}(0, 0.2, 1), \quad \phi_2 = \mathbf{c}(0, 0.5, 1), \quad \phi_3 = \mathbf{c}(0, 0.8, 1).
 \]
-As shown in Figure~\ref{fig:phi}, when the probability associated with the second category increases (as $\phi$ values rise), the density distribution changes significantly between the clusters. Specifically, in Cluster 1, there is a slight decrease in the density of the second category, while Cluster 2 exhibits a clear increase in the density of the same category. This indicates that higher $\phi$ values lead to a greater disparity in the density distributions between the clusters, particularly affecting the category with the increased $\phi$ value.
+As shown in Figure~\ref{fig:phi}, 
+when the probability associated with the second category increases (as $\phi$ values rise), 
+the density distribution changes significantly between the clusters. 
+Specifically, in Cluster 1, there is a slight decrease in the density of the second category, 
+while Cluster 2 exhibits a clear increase in the density of the same category. 
+This indicates that higher $\phi$ values lead to a greater disparity 
+in the density distributions between the clusters, 
+particularly affecting the category with the increased $\phi$ value.
 
-Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, with a more pronounced effect on the cluster associated with the higher $\phi$ values.
+Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, 
+with a more pronounced effect on the cluster associated with the higher $\phi$ values.
 
-% \subsubsection*{Effect of Different $\phi$ Values}
-% In Figure~\ref{fig:phi} shows
-% with $\phi$ value of each cluster increase, 
-% the density of each cluster are more different.
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
