@@ -179,7 +179,7 @@ The model's accuracy is measured by how well the predicted clusters match the ac
 
 In this section, we conduct experiments based on data generated from specified OSM parameters to analyze the effects of cluster and category distributions.
 
-\subsubsection{Simulation by Model Parameters}
+\subsubsection{OSM (Ordered Stereotype Model) Simulation}
 We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameter $\alpha$. The default parameters used in the simulations are as follows:
 \[
 \begin{aligned}
@@ -187,9 +187,9 @@ G &= 2, \\
 q &= 3, \\
 \alpha &= \mathbf{c}(1, -1), \\
 \beta &= \mathbf{c}(0), \\
-\mu &= \mathbf{c}(0.1, 0.2, 0.7), \\
-\phi &= \mathbf{c}(0, 0.2, 1), \\
-\pi &= \mathbf{c}(0.3, 0.7).
+\mu &= \mathbf{c}(0, 0, 0), \\
+\phi &= \mathbf{c}(0, 0.5, 1), \\
+\pi &= \mathbf{c}(0.5, 0.5).
 \end{aligned}
 \]
 All parameters except for $\beta$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
