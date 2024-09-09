@@ -195,7 +195,7 @@ q &= 3, \\
 All parameters except for $\beta$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
 
 \subsubsection*{Effect of Different $\alpha$ Values}
-In the OSM framework, the sum of the $\alpha$ parameters is constrained to equal zero. 
+In the OSM framework, $alpha$ is the argument of clusters. the sum of the $\alpha$ parameters is constrained to equal zero. 
 We examine the impact of varying the $\alpha$ values using the following configurations:
 \[
 \begin{aligned}
@@ -221,24 +221,22 @@ And cluster has lower $alpha$ value have larger probability to have sample in lo
 
 % mu
 \subsubsection*{Effect of Different $\mu$ Values}
+In OSM, $mu$ is argument of category. 
+The first value must be zero. There is no value limitation of $mu$, it can be large or negative.
 To investigate the impact of varying $\mu$ values on the cluster distributions, 
 we consider the following configurations:
 \[
 \begin{aligned}
-\mu_1 &= \mathbf{c}(0.1, 0.3, 0.6), \\
-\mu_2 &= \mathbf{c}(0.3, 0.3, 0.3), \\
-\mu_3 &= \mathbf{c}(0.6, 0.3, 0.1).
+\mu_1 &= \mathbf{c}(0, -1, -2), \\
+\mu_2 &= \mathbf{c}(0, 2, 1), \\
+\mu_3 &= \mathbf{c}(0, 1, 2).
 \end{aligned}
 \]
-Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value orders 
-on the density distribution of each cluster. 
-The results indicate that when the $\mu$ values are arranged in increasing order, 
-the mean density of the categories is lower. Conversely, 
-when the $\mu$ values are ordered in decreasing fashion, 
-the mean density increases. 
-This suggests that the ordering of $\mu$ values significantly influences 
-the density distribution across clusters, 
-with a notable impact on the mean density of each category.
+Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value.
+It shows the category has high $mu$ value leading to high probability of sample.
+we also can see, $\mu_1$ and $\mu_2$ plots are showing left and right mirror. 
+( TODO: No sure the reason, need to double confirm.)
+
 
 % % mu
 % \subsubsection*{Effect of Different $\mu$ Values}
