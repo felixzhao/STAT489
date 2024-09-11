@@ -298,23 +298,33 @@ When $\pi$ same then the overall sample size is close.
 
 % beta
 \subsubsection*{different $\beta$ value}
-TODO: analysis $\beta$ plots
+The parameter $\beta$ representing the effect from each column in the data.
+In Figure~\ref{fig:beta} shows 3 different sets of beta effects for 5 columns.
+We can find when $\beta$ values are close to zero the effects the data distributions are small,
+from the ~\ref{fig:beta} a, it shows very same sampling distributions as when $\beta$ set as zero which means no effect from column.
+Compare with ~\ref{fig:beta} a, b and c. We can find the effects from column has increased with the $\beta$ difference increasing.
+
+Another find is negative $\beta$ value leading large probability to sampling in lower categories.
+And postive $\beta$ value leading large probability to sampling in hgih categories.
 
 \begin{figure}[h]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_1.png}
+      \caption*{a. samll difference between $\beta$}
   \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_2.png}
-  \end{subfigure}
+      \caption*{a. medim difference between $\beta$}
+    \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_3.png}
+      \caption*{a. large difference between $\beta$}
   \end{subfigure}
   
   \caption{Effect to cluster distribution from different $\beta$ values}
