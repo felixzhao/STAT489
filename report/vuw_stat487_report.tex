@@ -345,66 +345,47 @@ And the value of each categories are selected by cuts which same to each cluster
 In Cluster distributions, our work is based on two clusters and three categories.
 
 There are 4 difference cluster distributions settings, which shown in 
-Figure~\ref*{fig:same_dist} clusters follow same distribution $N(0, 1)$ 
+Figure~\ref*{fig:dist_sim} (a) clusters follow same distribution $N(0, 1)$ 
 with same two cuts at $-1$ and $1$,
-Figure~\ref*{fig:diff_dist} clusters follow different distribution $N(-1,1)$ and $N(-1.5,2)$
+Figure~\ref*{fig:dist_sim} (b) clusters follow different distribution $N(-1,1)$ and $N(-1.5,2)$
 with same two cuts at $-1$ and $1$,
 
-Figure~\ref*{fig:close_dist} clusters follow different distribution with closer means $N(0,6)$ and $N(3,8)$
+Figure~\ref*{fig:dist_sim} (c) clusters follow different distribution with closer means $N(0,6)$ and $N(3,8)$
 with same two cuts at $0$ and $2.5$,
 
-Figure~\ref*{fig:far_dist} clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
+Figure~\ref*{fig:dist_sim} (d) clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
 with same two cuts at $1$ and $2.5$,
 
-% same dist
-% \subsubsection*{Same distribution with same cuts}
 \begin{figure}[h]
   \centering
-  \begin{subfigure}{0.8\textwidth}
+  \begin{subfigure}{0.49\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/dist_simu/4-0_1.png}
+      \caption{clusters follow same distribution with same cuts}
   \end{subfigure}
-  \caption{clusters follow same distribution with same cuts}
-  \label{fig:same_dist}
-\end{figure}
-
-% diff dist
-% \subsubsection*{different distribution with same cuts}
-
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/3--1_1_15_2.png}
+      \includegraphics[width=\textwidth]{images/dist_simu/3--1_1_15_2.png} % Replace with your second image path
+      \caption{clusters follow different distribution with same cuts}
   \end{subfigure}
-  \caption{clusters follow different distribution with same cuts}
-  \label{fig:diff_dist}
-\end{figure}
 
-% close dist
-% \subsubsection*{different distribution with close center}
-
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
+  \vspace{1em} % Adds vertical space between rows
+  
+  \begin{subfigure}{0.49\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/1-0_6-3_8.png}
+      \includegraphics[width=\textwidth]{images/dist_simu/1-0_6-3_8.png} % Replace with your third image path
+      \caption{clusters follow different distribution with close center}
   \end{subfigure}
-  \caption{clusters follow different distribution with close center}
-  \label{fig:close_dist}
-\end{figure}
-
-% far dist
-% \subsubsection*{different distribution with far center}
-
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}{0.8\textwidth}
+  \hfill
+  \begin{subfigure}{0.49\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/2-0_1-4_2.png}
+      \includegraphics[width=\textwidth]{images/dist_simu/2-0_1-4_2.png} % Replace with your fourth image path
+      \caption{clusters follow different distribution with far center}
   \end{subfigure}
-  \caption{clusters follow different distribution with far center}
-  \label{fig:far_dist}
+
+  \caption{Distribution Simulations}
+  \label{fig:dist_sim}
 \end{figure}
 
 \subsection{Experiments approach}
