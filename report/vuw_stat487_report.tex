@@ -586,32 +586,43 @@ But it shows significant fast decreasing when number of cluster is increased.
 \end{table}
 
 
-\subsubsection*{Prediction with same distribution}
+\subsection{Prediction with Normal Distribution simulate}
 
-TODO
+The experiments, based on different Normal distribution simulations, 
+utilized the same EM algorithm and were conducted exclusively for two clusters, 
+accounting for column effects as well.
 
-\subsubsection*{Prediction with different distribution}
+As shown in ~\ref*{fig:dist_acc} , all experiments resulted in very high overall accuracy. 
+Additionally, the confusion matrices in Tables ~\ref*{tab:nor_close}, ~\ref*{tab:nor_far} and  ~\ref*{tab:nor_cuts}
+demonstrate that the predictions for each cluster are highly accurate.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/experiments/norm_dist.png}
+  \caption{Prediction Accuracy for Normal with different parameter and cuts}
+  \label{fig:dist_acc}
+\end{figure}
+
 
 \begin{table}[h]
   \centering
-  \begin{tabular}{c|c|c|c}
-            & \textbf{Reference} & 1 & 2 \\
-  \hline
-  \textbf{Prediction} & 1 & 147 & 0 \\
-                      & 2 & 0 & 153 \\
-  \end{tabular}
-  \caption{Confusion matrix showing predictions vs references.}
-  \label{tab:confusion_matrix}
-  \end{table}
-  
-  \vspace{0.5cm} % Adds some vertical space between the table and the text
-  
-  \noindent\textbf{Overall Statistics:} \\
-  Accuracy: 1
 
-\subsubsection*{Prediction with different distribution with close center}
+  % Title above all tables
+  \caption*{\textbf{Confusion matrix of Normal Distributions}}
 
-  \begin{table}[h]
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 147 & 0 \\
+                        & 2 & 0 & 153 \\
+    \end{tabular}
+    \caption{Far center}
+    \label{tab:nor_far}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
     \centering
     \begin{tabular}{c|c|c|c}
               & \textbf{Reference} & 1 & 2 \\
@@ -619,22 +630,24 @@ TODO
     \textbf{Prediction} & 1 & 144 & 0 \\
                         & 2 & 3 & 153 \\
     \end{tabular}
-    \caption{Confusion matrix showing predictions vs references.}
-    \label{tab:confusion_matrix}
-    \end{table}
-    
-    \vspace{0.5cm} % Adds some vertical space between the table and the text
-    
-    \noindent\textbf{Overall Statistics:} \\
-    Accuracy: 0.99
+    \caption{Close center}
+    \label{tab:nor_close}
+  \end{minipage}
 
-\subsubsection*{Prediction with different distribution with far center}
+  \vspace{1em} % Space between rows
 
-TODO
-
-\subsubsection*{Prediction with larger number of Ys}
-
-TODO
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 147 & 0 \\
+                        & 2 & 0 & 153 \\
+    \end{tabular}
+    \caption{different distributions with same cuts}
+    \label{tab:nor_cuts}
+  \end{minipage}
+\end{table}
 
 \subsection{Other topic may need to explained}
 
