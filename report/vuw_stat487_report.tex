@@ -427,13 +427,43 @@ Finally, for each new observation $Y'$ in the validation set, we computed the Z-
 
 \subsection{Prediction with OSM simulate}
 
+\subsubsection*{Prediction with differet number of Ys}
+
+This experiments use following parameter value.
+\[
+\begin{aligned}
+G &= 2, \\
+q &= 3, \\
+\alpha &= \mathbf{c}(1, -1), \\
+\mu &= \mathbf{c}(0, 0, 0), \\
+\phi &= \mathbf{c}(0, 0.5, 1), \\
+\pi &= \mathbf{c}(0.5, 0.5).
+\end{aligned}
+\]
+\[
+\beta \sim \mathcal{U}(-1, 1)
+\]
+For 20 Ys Experiment, we generated 20 values of $\beta$ from a uniform distribution over the interval $[-1, 1]$.
+And in 30 Ys, 50 Ys experiments, $\beta$ generated from 30 and 50 values from uniform distribution as well.
+In ~\ref*{tab:20_ys}, ~\ref*{tab:30_ys} and ~\ref*{tab:50_ys} shows the confusion matrix of these prediction result of different number of Ys.
+
+\subsubsection*{Prediction with differet number of Cluster}
+
+In both experiments of different number of cluster, 
+the default parameter values were used across different clusters, 
+with 20 values of Y generated for each experiment. 
+
+For the three-cluster experiment, the values of $\alpha$ were set to -1, 0, and 1, 
+while the cluster proportions ($\pi$) were 0.33, 0.34, and 0.33, respectively. 
+
+In the five-cluster experiment, $\alpha$ values were set to -1, -0.5, 0, 0.5, and 1, 
+with equal cluster proportions of 0.2 for each cluster.
+
+In ~\ref*{tab:2_clu}, ~\ref*{tab:3_clu} and ~\ref*{tab:5_clu} shows the confusion matrix of these prediction result of different number of clusters.
+
 From ~\ref*{fig:exp_res} we found the prediciton overall accuracy of cluster.
 It keep increase when number of Ys increased,
 But it shows significant fast decreasing when number of cluster is increased.
-
-In ~\ref*{tab:20_ys}, ~\ref*{tab:30_ys} and ~\ref*{tab:50_ys} shows the confusion matrix of these prediction result of different number of Ys.
-
-In ~\ref*{tab:2_clu}, ~\ref*{tab:3_clu} and ~\ref*{tab:5_clu} shows the confusion matrix of these prediction result of different number of clusters.
 
 \begin{figure}[h]
   \centering
