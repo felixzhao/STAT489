@@ -196,8 +196,9 @@ The Ordered Stereotype Model  (~\cite{anderson1984regression}) is a statistical 
 where the outcomes are categories with a natural order but not a quantifiable difference between them.
 
 In this work, we follow the methodology outlined by (~\cite{fernandez2016mixture})
-Given an ordinal response variable $Y$ with categories ($k=1, 2, \ldots, K$) from cluster $g$, the probability of $Y$ falling into the $k$th category, is denoted as $P(Y = k)$.
-
+Given an ordinal response variable $Y_{ij}$ with categories ($k=1, 2, \ldots, q$), and $i$ is row index, $j$ is column index.
+The probability of $Y_{ij}$ falling into the $k$th category, is denoted as $P(Y = k)$.
+The $g$ is cluster of data, if we have $g$ clusters.
 
 The model for category $k$ is then:
 \begin{equation}
@@ -205,7 +206,7 @@ The model for category $k$ is then:
 \end{equation}
   
 
-where $\mu_k$ is the intercept for category $k$, 
+where $\mu_k$ is the intercept for category $k$, $\mu_1$ set to zero for identical probability. 
  $\alpha$ represents the effect of cluster $g$,
 and $\beta$ represents the effect of column $J$.
 Parameters $\phi$ must be arranged in an ordered sequence from 
