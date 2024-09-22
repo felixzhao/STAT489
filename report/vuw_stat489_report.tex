@@ -553,7 +553,7 @@ First, the Expectation-Maximization (EM) algorithm was applied to estimate the p
 Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, and column combination. 
 These probabilities were then standardized within each cluster.
 
-Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each category using these standardized probabilities.
+Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities.
 \begin{algorithm}
   \caption{Pseudocode for Calculating Cluster Probabilities}
   \label{fig:algo}
