@@ -7,7 +7,7 @@
 \usepackage[backend=biber, style=apa, natbib=true]{biblatex}
 \usepackage{algorithm}
 \usepackage{algorithmic}
-\addbibresource{bibliography.bib} % Replace 'yourbibfilename.bib' with your actual .bib file name.
+\addbibresource{bibliography.bib}
 
 % 1.  Don't need such wide margins.
 \usepackage[margin=1in]{geometry} % Setting the margins to 1 inch
@@ -22,6 +22,7 @@
 
 \maketitle
 
+% From VUW 487 Report
 \section{Introduction}
 
 
@@ -182,7 +183,7 @@ Compare with previous work, Jacques and Biernacki's (~\cite{jacques2018model}) m
 Compared to tree based or distance based clustering algorithms, model-based clustering algorithms demonstrate superior performance with ordinal data, particularly in scenarios involving multiclass and multioutput cases. 
 This advantage stems from two key factors: firstly, ordinal data do not presuppose equal distances between categories, a condition that distance-based methods often rely on. Secondly, ordinal data typically encompass only a few categories, which can limit the effectiveness of tree-based methods designed to partition data across a broader numerical range.
 
-
+% End From VUW 487 Report
 
 \section{Addition work (TODO)}
 
@@ -368,7 +369,7 @@ As shown in Figure~\ref{fig:alpha},
 the cluster has high $alpha$ value leading to have larger probability to have sample in high category.
 And cluster has lower $alpha$ value have larger probability to have sample in low category.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -398,7 +399,7 @@ and the $\mu_2$ is in the middle.
 ( TODO: This is related to defalut $phi$ value. 
 Need to check the detial reason.)
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -428,7 +429,7 @@ particularly affecting the category with the increased $\phi$ value.
 Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, 
 with a more pronounced effect on the cluster associated with the higher $\phi$ values.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -450,7 +451,7 @@ from the columns increase as the $\beta$ values deviate further from zero.
 
 Additionally, negative $\beta$ values result in a higher probability of sampling from the lower categories, 
 whereas positive $\beta$ values increase the likelihood of sampling from the higher categories.
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -480,7 +481,7 @@ In EM Algorithm, the $\pi$ parameter effects the sample size of each cluster.
 In Figure~\ref{fig:pi} shows when $\pi$ value small leading to less sample size.
 when $\pi$ larger then the cluster has more sample size.
 When $\pi$ same then the overall sample size is close.
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -514,7 +515,7 @@ with same two cuts at $0$ and $2.5$,
 Figure~\ref*{fig:dist_sim} (d) clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
 with same two cuts at $1$ and $2.5$,
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
@@ -617,7 +618,7 @@ From ~\ref*{fig:exp_res} we found the prediciton overall accuracy of cluster.
 It keep increase when number of Ys increased,
 But it shows significant fast decreasing when number of cluster is increased.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{subfigure}{0.49\textwidth}
       \centering
@@ -634,7 +635,7 @@ But it shows significant fast decreasing when number of cluster is increased.
   \label{fig:exp_res}
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
   \centering
 
   % Title above all tables
@@ -684,7 +685,7 @@ But it shows significant fast decreasing when number of cluster is increased.
 
 % confustion matrix of diff clusters
 
-\begin{table}[h]
+\begin{table}[ht]
   \centering
 
   % Title above all tables
@@ -747,7 +748,7 @@ As shown in ~\ref*{fig:dist_acc} , all experiments resulted in very high overall
 Additionally, the confusion matrices in Tables ~\ref*{tab:nor_close}, ~\ref*{tab:nor_far} and  ~\ref*{tab:nor_cuts}
 demonstrate that the predictions for each cluster are highly accurate.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \includegraphics[width=0.8\textwidth]{images/experiments/norm_dist.png}
   \caption{Prediction Accuracy for Normal with different parameter and cuts}
@@ -755,7 +756,7 @@ demonstrate that the predictions for each cluster are highly accurate.
 \end{figure}
 
 
-\begin{table}[h]
+\begin{table}[ht]
   \centering
 
   % Title above all tables
