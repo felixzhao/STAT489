@@ -192,7 +192,8 @@ TODO
 
 \subsection{Ordered Stereotype Model}
 
-The Ordered Stereotype Model  (~\cite{anderson1984regression}) is a statistical approach designed to analyze ordinal dependent variables, where the outcomes are categories with a natural order but not a quantifiable difference between them.
+The Ordered Stereotype Model  (~\cite{anderson1984regression}) is a statistical approach designed to analyze ordinal dependent variables, 
+where the outcomes are categories with a natural order but not a quantifiable difference between them.
 
 In this work, we follow the methodology outlined by (~\cite{fernandez2016mixture})
 Given an ordinal response variable $Y$ with categories ($k=1, 2, \ldots, K$) from cluster $g$, the probability of $Y$ falling into the $k$th category, is denoted as $P(Y = k)$.
@@ -200,8 +201,9 @@ Given an ordinal response variable $Y$ with categories ($k=1, 2, \ldots, K$) fro
 
 The model for category $k$ is then:
 \begin{equation}
-log\left(\frac{P(Y = k)}{P(Y = 1)} \mid i \in g, j \in J\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j\right) 
+  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid i \in g, j \in J\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right)
 \end{equation}
+  
 
 where $\mu_k$ is the intercept for category $k$, 
  $\alpha$ represents the effect of cluster $g$,
