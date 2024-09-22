@@ -24,13 +24,165 @@
 
 \section{Introduction}
 
-TODO
 
-%  \subsection{Ordinal Data}
+The study of ordinal data presents unique challenges and opportunities.
+Ordinal data consists of categories with an inherent order but undefined
+spacing. This makes it distinct from nominal and continuous data,
+necessitating specialized analytical methods that acknowledge its
+structured ordering without presuming equal intervals between its
+categories.
 
-\section{Literature Review}
+This project investigates methods for clustering and predicting cluster
+membership for ordinal data. These methods are useful because ordinal
+data is prevalent in fields ranging from social sciences to healthcare.
+We begin by defining ordinal data and describing its distinctive
+features. We then discuss existing clustering and prediction
+methodologies. We focus on model-based clustering because we have an
+existing sophisticated approach of this type, that is tailored to the
+ordinal nature of the data, whereas there are limitations inherent in
+distance-based methods when applied to ordinal data. The report
+describes specific statistical models developed for ordinal data
+analysis, such as the Proportional Odds model and the Ordered Stereotype
+Model, highlighting their effectiveness in extracting meaningful
+insights.
 
-TODO
+We then reflect on the historical development of ordinal data analysis,
+from early methodologies to recent innovations that have broadened its
+applicability and improved its precision. We also consider future
+research directions, including the potential for integrating machine
+learning with conventional statistical methods to refine the predictive
+performance of ordinal data models.
+
+Clustering methods have previously been developed for ordinal data,
+using models such as the Ordered Stereotype Model. However, these
+existing methods do not include techniques for determining the likely
+cluster membership of any new observations that were not available at
+the initial clustering stage. Therefore, this research aims to extend
+these existing methods to accurately predict cluster membership for
+incoming data points. Such advancements are crucial for applying ordinal
+data in dynamic environments where new data are produced frequently. The
+accuracy of the predictions is also important, so we will assess this to
+ensure that the methods perform sufficiently well.
+
+In summary, this paper offers an examination of methodologies for
+clustering and predicting ordinal data. This inquiry is intended as a
+resource for both researchers and practitioners, providing insights
+necessary for navigating the complexities of ordinal data and leveraging
+its full potential in analytical endeavors.
+
+\subsection{Ordinal Data}
+
+Ordinal data, a pivotal concept in statistical analysis, represents categorical data characterized by a meaningful order among its categories, without implying uniform differences between these ranks. Unlike nominal data, which merely categorizes without any implied ranking, ordinal data elevates the categorical analysis by introducing a hierarchy or sequence that is significant yet lacks quantifiable intervals between its elements. This characteristic distinguishes ordinal data: it conveys the sequence of values but remains silent on the magnitude of difference between successive ranks.
+
+Such data often appear as rankings or ordered classifications where the precise distance between categories is undefined or irrelevant. 
+Despite sometimes being numerically coded for analytical convenience, ordinal data resist traditional arithmetic operations, rendering calculations like addition or subtraction inappropriate and misleading.
+
+In the realm of statistical analysis, ordinal data necessitates specialized, non-parametric methods. 
+The median and mode stand out as appropriate measures of central tendency for this data types, 
+aligning with their ordered nature without assuming equal intervals between categories.
+
+Ordinal data's prevalence is notably high in social sciences, especially in surveys and questionnaires designed to capture subjective assessments such as attitudes, opinions, and preferences. These instruments frequently employ scales—ranging from ``strongly disagree'' to ``strongly agree''—to elicit responses that, while ordered, do not support the notion of fixed distances between adjacent categories. This principle underlines the core attribute of ordinal data: the clear hierarchy among responses without an inherent interval scale to quantify the gaps between them. Consequently, assigning numerical values to such categories for computational purposes is generally discouraged and conceptually flawed, as it misinterprets the data's ordinal nature 
+
+(~\textcite{Johnson1999}) gives a good sample,
+ It is typically rational to presume an order such as
+
+ \[
+ \text{strongly disagree} < \text{disagree} < \text{don’t know} < \text{agree} < \text{strongly agree}
+\]
+ However, it is often illogical to allocate integer values to these categories. Therefore, calculations like
+\[
+\text{``disagree''} - \text{``strongly disagree''}
+\]
+
+\[
+\text{``agree''} - \text{``don't know''}
+\]
+are not considered valid. 
+This demonstrates that performing arithmetic calculations on the numerical values assigned to the categories does not make sense.
+
+% \begin{figure}[ht!] % 'h!' places the figure here, in the text
+%     \centering % Centers the figure
+%     \includegraphics[width=0.6\textwidth]{images/ordinal_data_dist.png} % Include the image with 50% of the text width
+%     \caption{Latent trait interpretation of ordinal classification. 
+%     In this plot, the logistic density represents the distribution of latent traits for a particular individual. 
+%     It is assumed that a random variable is drawn from this density, and the value of this random variable determines an individual's classification. 
+%     For example, if a deviate of 0.5 is drawn, the individual receives a D. (~\cite{Johnson1999}).} % Caption for the image
+%     \label{fig:ordinal} % Label for referencing the figure in the text
+%   \end{figure}
+
+\subsection{Comparison with continuous numerical data}
+
+In the context of statistical analysis, the distinction between ordinal and continuous numerical data types is pivotal, influencing both the choice of analytical methods and the depth of insights that can be derived. 
+Ordinal data, characterized by its capacity to rank order categories without indicating precise differences between them, is inherently less informative than continuous numerical data. 
+Continuous numerical data, with its quantitative nature, allows for an infinite range of values and supports detailed statistical operations, including arithmetic calculations and the application of advanced statistical models, facilitating a nuanced understanding of variables and their interrelations (~\cite{Stevens1946}).
+
+The limitations of ordinal data stem from its inability to quantify the exact magnitude of differences between categories, a factor that restricts the application of parametric statistical methods. This constraint necessitates reliance on non-parametric methods, focusing on medians and modes rather than means and standard deviations, thereby offering a less detailed analysis (~\cite{Conover1999}). 
+For instance, in Likert scale responses commonly used in surveys, the ordinal nature of data precludes meaningful calculations of averages or differences between responses, limiting the depth of analysis that can be achieved (~\cite{Likert1932}).
+
+Comparatively, continuous numerical data's capacity for precise measurement and the application of a broader range of statistical analyses enables a more detailed and accurate exploration of phenomena. 
+This capability is contingent upon the availability of continuous numerical results, which may not always be feasible. The nature of the data collectible in certain research scenarios—such as measuring opinions, attitudes, or perceptions—often necessitates the use of ordinal data, due to the challenges associated with obtaining continuous measurements in these contexts. For instance, eliciting responses on a continuous percentage scale from 0 to 100 can be impractical when assessing subjective experiences or preferences. Hence, the decision to utilize ordinal data over continuous numerical data is not solely a matter of choice in research design and analysis but is also influenced by the practicalities of what data can realistically be gathered. This consideration is crucial for ensuring the validity and relevance of research findings, highlighting the importance of aligning data collection methods with the specific circumstances and constraints of the study.
+
+In summary, while ordinal data is invaluable for capturing rankings and subjective assessments, 
+its analytical limitations highlight the superior informational value of continuous numerical data in quantitative research. 
+This distinction is crucial for researchers in the selection of appropriate statistical methods and in the interpretation of their data, 
+ensuring that conclusions drawn are both valid and meaningful.
+
+\subsection{Clustering}
+
+Clustering is a fundamental technique in the field of data analysis and machine learning, aimed at grouping a set of objects in such a way that objects in the same group (or cluster) are more similar to each other than to those in other groups. Its applications span a wide range of areas including market research, pattern recognition, image analysis, and bioinformatics, among others. For instance, in market research, clustering can help identify distinct customer segments based on purchasing behavior, while in bioinformatics, it can be used to classify different types of genes or proteins with similar functions.
+
+There are primarily two types of clustering: distance-based clustering and model-based clustering.
+
+1. \textbf{Distance-based Clustering}: 
+
+This approach relies on the concept of similarity or distance between data points. 
+The aim is to minimize the distance between data points within a cluster while maximizing the distance between data points in different clusters. 
+Popular methods include K-means (~\cite{macqueen1967some}), 
+hierarchical clustering (~\cite{johnson1967hierarchical}), and DBSCAN (~\cite{ester1996density}), 
+each using different metrics (e.g., Euclidean, Manhattan) to measure distance or similarity.
+
+2. \textbf{Model-based Clustering}: 
+
+Unlike distance-based methods, model-based clustering (~\cite{fraley2002model}) assumes that the data is generated from a mixture of finite distributions, 
+where each component of the mixture represents a cluster. 
+This approach tries to estimate the parameters of these distributions to optimize the fit between the model and the data. 
+Model-based methods are particularly useful for complex data structures, including those with mixed types of data (numerical, categorical) or where the clusters have different sizes, shapes, or orientations.
+
+Model-based clustering is often more suitable for ordinal data—data that contain natural, orderable categories. This is because ordinal data, which embody an inherent ranking or order (e.g., survey responses from "strongly agree" to "strongly disagree"), do not fit well with the distance metrics used in distance-based clustering, which treat distances between all pairs of categories as equal. Model-based clustering, on the other hand, can accommodate the ordinal nature by incorporating it into the model assumptions, allowing for a more nuanced understanding and grouping based on the inherent order of the data. This method can capture the ordinal information effectively, providing more meaningful and interpretable clusters for analysis.
+
+\section{History of model-based Ordinal Data Clustering}
+
+\subsection{Early Developments (2000--2010)}
+
+McLachlan \& Basford 1988 (~\cite{mclachlan1988mixture}) start to marked a crucial step in mixture model applications by simplifying the maximum likelihood estimation (MLE) using the EM algorithm (~\cite{dempster1977maximum}).
+
+McLachlan \& Peel's 2000 book further elaborate on this approach. This approach, utilizing $Y_j$ and $Z_j$, not only enhanced the computational efficiency of MLE but also laid a foundational strategy for Bayesian approaches and MCMC methods in mixture models. The paper’s impact is evident in its widespread adoption across various domains, from bioinformatics to finance, where mixture models are employed (~\cite{mclachlan2000finite}).
+
+In 2002, Figueiredo's introduction of an unsupervised algorithm for learning finite mixture models was a game-changer. This method's ability to autonomously select the number of components represented a significant leap over previous techniques, which often relied on arbitrary or manual component selection. Additionally, the algorithm's robustness against initialization issues and singular estimates made it a go-to choice for practitioners dealing with complex multivariate data (~\cite{figueiredo2002unsupervised}).
+
+A key paper in 2010 by Volodymyr and Ranjan addressed practical challenges in applying the EM algorithm for mixture models. This comprehensive guide to estimation, model selection, and likelihood maximization was a boon for both researchers and practitioners. Notably, the work extended beyond Gaussian mixtures, offering insights and methodologies for simulating and visualizing non-Gaussian mixtures, thereby broadening the applicability of mixture models (~\cite{10.1214/09-SS053}).
+
+\subsection{Recent Developments (2010--2019)}
+
+In 2016, Matechou et al. introduced a novel approach to data analysis with their proposal of finite mixture models for biclustering two-mode ordinal categorical data. Utilizing proportional odds parameterization, these models offered a sophisticated understanding of complex data patterns, particularly beneficial in fields such as genomics and social sciences where ordinal data is prevalent. The application of the EM algorithm for model fitting highlighted the continued importance of this method in the context of mixture model applications (~\cite{matechou2016biclustering}).
+
+Similarly, in 2016, Fernandez et al. presented an alternative methodology for clustering ordinal data by employing likelihood-based methods through finite mixtures with the stereotype model. This approach stood out for its use in fuzzy clustering techniques, an area that has been attracting increased attention in the realm of data science (~\cite{fernandez2016mixture}).
+
+In 2019 Fernandez et al.'s extension of finite mixture models to binary, count, and ordinal data under a unified statistical framework represented a consolidation and expansion of mixture model applications. The introduction of maximum likelihood estimation parameters and the Bayesian approach for simultaneous estimation were indicative of the field's progression towards more flexible and comprehensive modeling techniques (~\cite{fernandez2019finite}).
+
+The primary innovation in both of these studies lies in the integration of ordinal data models with finite mixture methods, a departure from the traditional use of finite mixtures for continuous variables.
+
+
+Jacques and Biernacki's 2018 introduction of a model-based co-clustering algorithm was a significant advancement. The algorithm's ability to handle missing data and its interpretability made it especially relevant for high-dimensional datasets. The BOS distribution employed in this model underscored the continuous innovation in probabilistic modeling techniques, catering to the increasing complexity of data in modern research (~\cite{jacques2018model}).
+
+Compare with previous work, Jacques and Biernacki's (~\cite{jacques2018model}) method is based on a novel Binary Ordinal Search (BOS) model emphasizing efficiency and interpretability, especially with missing data. 
+
+\subsection{Compare with other clustering algorithm}
+
+Compared to tree based or distance based clustering algorithms, model-based clustering algorithms demonstrate superior performance with ordinal data, particularly in scenarios involving multiclass and multioutput cases. 
+This advantage stems from two key factors: firstly, ordinal data do not presuppose equal distances between categories, a condition that distance-based methods often rely on. Secondly, ordinal data typically encompass only a few categories, which can limit the effectiveness of tree-based methods designed to partition data across a broader numerical range.
+
+
 
 \section{Addition work (TODO)}
 
