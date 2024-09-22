@@ -550,6 +550,12 @@ Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calcula
 These probabilities were then standardized within each cluster.
 
 Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities.
+
+Additionally, the defalut parameter given by EM algorithm have label switching problem.
+The label switching is the cluster parameter $\alpha$ not in a correct order, which leading the prediciton logic given wrong prediction.
+% TODO add reference and given more formal definition of "label switching"
+In this work we reordering the fitted clusters in order of decreasing $\alpha$ then do predictions based on the reordered clusters.
+
 \begin{algorithm}
   \caption{Pseudocode for Calculating Cluster Probabilities}
   \label{fig:algo}
