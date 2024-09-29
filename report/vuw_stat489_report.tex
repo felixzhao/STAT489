@@ -763,6 +763,28 @@ But it shows significant fast decreasing when number of cluster is increased.
 
 \end{table}
 
+\begin{table}[ht]
+  \centering
+
+  % Title above all tables
+  \caption*{\textbf{Confusion matrix of different number of Clusters with 100 Ys}}
+
+  \begin{minipage}{0.6\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 713 & 36 & 0 & 0 & 0 \\
+                          & \textbf{2} & 35 & 680 & 18 & 0 & 0 \\
+                          & \textbf{3} & 0 & 28 & 762 & 20 & 0 \\
+                          & \textbf{4} & 0 & 0 & 19 & 682 & 36 \\
+                          & \textbf{5} & 0 & 0 & 0 & 26 & 695 \\
+    \end{tabular}
+    \caption{5 Clusters prediciton with 100 Ys}
+    \label{tab:5_clu_100_ys}
+  \end{minipage}  
+
+\end{table}
 
 \subsection{Prediction with Normal Distribution simulate}
 
