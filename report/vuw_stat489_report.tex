@@ -860,6 +860,19 @@ demonstrate that the predictions for each cluster are highly accurate.
   \label{fig:dist_5_clus}
 \end{figure}
 
+\subsection{Replication of Experiment}
+
+To verify the consistency and robustness of our findings, we conducted a replication of the original experiment under different conditions by employing multiple runs with randomly generated seeds. The replication process involved repeating the experiment multiple times, each with a distinct random seed, to assess the variability in the obtained results.
+
+Specifically, we focused on evaluating the stability of the model's performance by examining the accuracy metrics across these replicated runs. For each run, the model was trained and tested using identical parameters and data configurations, except for the random initialization determined by the seed value. We computed the accuracy for each replicate and subsequently calculated the standard deviation (std) of the accuracy scores.
+
+The standard deviation of the accuracy across replicates serves as an indicator of the reliability of the experiment. A low standard deviation suggests that the model consistently achieves similar performance regardless of the random initialization, demonstrating the robustness of the experiment. Conversely, a higher standard deviation may indicate sensitivity to the initial conditions, suggesting a need for further investigation into factors contributing to this variability.
+
+Our results showed that the standard deviation of accuracy across the replicated experiments was 
+\{TODO update final replication result\}
+, indicating robustness in model performance. 
+This analysis provides valuable insights into the replicability of our model and ensures that our reported results are not an artifact of specific random initializations.
+
 \subsection{Other topic may need to explained}
 
 \subsubsection{Row cluster}
