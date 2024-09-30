@@ -203,15 +203,16 @@ The $g$ is cluster of data, if we have $g$ clusters.
 
 The model for category $k$ is then:
 \begin{equation}
-  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid i \in g, j \in J\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right)
+  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right)
 \end{equation}
   
 
 where $\mu_k$ is the intercept for category $k$, $\mu_1$ set to zero for identical probability. 
  $\alpha$ represents the effect of cluster $g$,
-and $\beta$ represents the effect of column $J$.
+ $\beta$ represents the effect of column $j$,
+ and $\theta$ represents the effect of rows $i$.
 Parameters $\phi$ must be arranged in an ordered sequence from 
-$0 = \phi_1 \leq \phi_2 \leq \ldots \leq \phi_K = 1.$ 
+$0 = \phi_1 \leq \phi_2 \leq \ldots \leq \phi_k = 1.$ 
 This constraint allows the model to adapt to the inherent ordering of categories, ensuring the effects across categories follow a common, scaled pattern.
 
 
@@ -302,11 +303,14 @@ In our study, we will concentrate on row clusters with (Ordered Stereotype Model
 
 The observed data ($Y$) is divided into a training set ($Y'$) and a test set ($Y''$). The training set comprises the first $t$ observations for adjusting model parameters, while the subsequent observations ($y_{t+1}, \dots, y_n$) make up the test set for evaluating the model.
 
-The Expectation-Maximization (EM) algorithm is used to refine the parameters of the finite mixture model using the training data. Here, $K$ represents the number of ordinal categories, and $G$ denotes the number of clusters. The aggregate probability for each category, summed across all clusters, must equal one.
+The Expectation-Maximization (EM) algorithm is used to refine the parameters of the finite mixture model using the training data. 
+Here, $k$ represents the number of ordinal categories, and $g$ denotes the number of clusters. 
+The aggregate probability for each category, summed across all clusters, must equal one.
 
-During the training phase, the M-step of the EM algorithm updates the parameters, $\mu_k$ and $\phi_k$ for each category, $\alpha_g$ and $\hat{\beta}_j$ for each cluster.
+During the training phase, the M-step of the EM algorithm updates the parameters, 
+$\mu_k$ and $\phi_k$ for each category, $\alpha_g$, $\beta_j$ and $\theta$ for each cluster.
 
-Upon completion of the EM algorithm, we obtain their estimates $\hat{\mu}_k$, $\hat{\phi}_k$, $\hat{\alpha}_g$ and $\hat{\beta}_j$ which are utilized for cluster prediction.
+Upon completion of the EM algorithm, we obtain their estimates $\hat{\mu}_k$, $\hat{\phi}_k$, $\hat{\alpha}_g$, $\hat{\beta}_j$ and $\hat{\theta}$ which are utilized for cluster prediction.
 
 To achieve our objectives, the implementation will utilize the "clustord" package (\cite{clustord2024}), 
 developed by the School of Mathematics and Statistics at Victoria University of Wellington. 
