@@ -873,6 +873,34 @@ Our results showed that the standard deviation of accuracy across the replicated
 , indicating robustness in model performance. 
 This analysis provides valuable insights into the replicability of our model and ensures that our reported results are not an artifact of specific random initializations.
 
+\subsection{Handling Label Switching in Model Predictions}
+
+One of the common issues encountered in clustering analysis, 
+particularly when using probabilistic models such as the Expectation-Maximization (EM) algorithm, 
+is the phenomenon known as "label switching." 
+
+Label switching occurs when the clustering algorithm assigns different cluster identifiers (labels) to similar data points across different runs, 
+even though the underlying clustering structure remains consistent. 
+This can be particularly problematic in evaluating the consistency of ordinal data predictions, 
+as correct predictions may receive mismatched cluster labels, 
+thereby obscuring the true performance of the model.
+
+In this work, we address the issue of label switching by implementing a post-processing step to reorder the estimates of cluster-specific parameters, 
+specifically the estimated probability of the latent variable 
+$\alpha$, produced by the EM algorithm. By reordering these probability estimates, 
+we ensure that the cluster labels are aligned consistently across multiple runs, 
+thereby maintaining interpretability and allowing for a more accurate assessment of model performance.
+
+The reordering process is performed based on the values of the estimated probabilities of 
+$\alpha$, ensuring that clusters are always labeled in a consistent manner—e.g., 
+from the smallest to the largest probability value. 
+This deterministic relabeling method effectively mitigates the label switching problem, 
+allowing us to accurately evaluate the correspondence between predicted clusters and the true structure of the data.
+
+Through this approach, we are able to compare cluster assignments across different experiments without ambiguity, 
+ensuring that the predicted labels are not arbitrarily permuted, and thereby enhancing the reliability of our model evaluation. 
+This is particularly critical for ordinal data, where maintaining the natural ordering of the clusters is essential for meaningful interpretation.
+
 \subsection{Other topic may need to explained}
 
 \subsubsection{Row cluster}
