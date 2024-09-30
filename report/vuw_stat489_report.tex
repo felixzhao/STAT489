@@ -193,28 +193,42 @@ TODO
 
 \subsection{Ordered Stereotype Model}
 
-The Ordered Stereotype Model  (~\cite{anderson1984regression}) is a statistical approach designed to analyze ordinal dependent variables, 
-where the outcomes are categories with a natural order but not a quantifiable difference between them.
+The Ordered Stereotype Model, as introduced by Anderson (1984) (~\cite{anderson1984regression}), 
+is a statistical approach specifically designed for analyzing ordinal dependent variables. 
+These variables have categories that possess a natural order, 
+though the differences between them are not directly quantifiable.
 
-In this work, we follow the methodology outlined by (~\cite{fernandez2016mixture})
-Given an ordinal response variable $Y_{ij}$ with categories ($k=1, 2, \ldots, q$), and $i$ is row index, $j$ is column index.
-The probability of $Y_{ij}$ falling into the $k$th category, is denoted as $P(Y = k)$.
-The $g$ is cluster of data, if we have $g$ clusters.
+In this work, we adopt the methodology outlined by Fernández et al. (2016) (~\cite{fernandez2016mixture}). 
+Let us consider an ordinal response variable \(Y_{ij}\) with categories denoted by \(k = 1, 2, \ldots, C\), 
+where \(i\) represents the row index, and \(j\) represents the column index. 
+The probability that \(Y_{ij}\) falls into the \(k\)-th category is given by \(P(Y = k)\). 
+Suppose the data is partitioned into \(g\) clusters.
 
-The model for category $k$ is then:
+The model for the probability of category \(k\) is then expressed as follows:
 \begin{equation}
-  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right)
+  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right),
 \end{equation}
-  
+where:
 
-where $\mu_k$ is the intercept for category $k$, $\mu_1$ set to zero for identical probability. 
- $\alpha$ represents the effect of cluster $g$,
- $\beta$ represents the effect of column $j$,
- and $\theta$ represents the effect of rows $i$.
-Parameters $\phi$ must be arranged in an ordered sequence from 
-$0 = \phi_1 \leq \phi_2 \leq \ldots \leq \phi_k = 1.$ 
-This constraint allows the model to adapt to the inherent ordering of categories, ensuring the effects across categories follow a common, scaled pattern.
+\begin{itemize}
+    \item \(\mu_k\) is the intercept for category \(k\), with \(\mu_1\) set to zero to provide a reference category.
+    \item \(\alpha_g\) represents the effect associated with cluster \(g\).
+    \item \(\beta_j\) represents the effect associated with column \(j\).
+    \item \(X_i^T \cdot \theta\) represents the effect associated with row \(i\), where \(\theta\) is a vector of coefficients.
+\end{itemize}
 
+A key feature of the Ordered Stereotype Model is the parameter \(\phi_k\), 
+which must be arranged in an ordered sequence such that:
+\[
+0 = \phi_1 \leq \phi_2 \leq \ldots \leq \phi_q = 1.
+\]
+This constraint ensures that the model captures the natural ordering of categories, 
+allowing the effects across different categories to follow a common, scaled pattern. 
+The parameter \(\phi\) effectively adjusts the contribution of the predictors to the log-odds for each ordinal category, 
+preserving the inherent structure of the ordinal response.
+
+This modeling approach provides flexibility in representing the ordered nature of the data while maintaining interpretability, 
+which is particularly useful for understanding the effects of cluster, row, and column factors in a unified framework.
 
   
 
