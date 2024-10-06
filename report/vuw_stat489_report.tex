@@ -594,25 +594,28 @@ In this work we reordering the fitted clusters in order of decreasing $\alpha$ t
   \caption{Pseudocode for Calculating Cluster Probabilities}
   \label{fig:algo}
   \begin{algorithmic}[1]
-  \STATE Initialize a 3D array \texttt{cluster\_probs} with dimensions $G \times \texttt{number\_of\_y} \times q$ and all elements set to 0.
+  \STATE Initialize a 4D array \texttt{cluster\_probs} with dimensions $G \times \texttt{number\_of\_row} \times \texttt{number\_of\_y} \times q$ and all elements set to 0.
   
   \FOR{$g = 1$ to $G$}
-      \FOR{$j = 1$ to \texttt{number\_of\_y}}
-          \FOR{$k = 1$ to $q$}
-              \IF{$k > 1$}
-                  \STATE Calculate $\texttt{linear} \gets \mu[k] + \phi[k] \times (\alpha[g] + \beta[j])$
-                  \STATE Set $\texttt{cluster\_probs}[g, j, k] \gets \exp(\texttt{linear})$
-              \ELSE
-                  \STATE Set $\texttt{cluster\_probs}[g, j, k] \gets 1$
-              \ENDIF
+      \FOR{$i = 1$ to \texttt{number\_of\_row}}
+          \FOR{$j = 1$ to \texttt{number\_of\_y}}
+              \FOR{$k = 1$ to $q$}
+                  \IF{$k > 1$}
+                      \STATE Calculate $\texttt{linear} \gets \mu[k] + \phi[k] \times (\alpha[g] + \beta[j] + \sum \delta \times X[i,])$
+                      \STATE Set $\texttt{cluster\_probs}[g, i, j, k] \gets \exp(\texttt{linear})$
+                  \ELSE
+                      \STATE Set $\texttt{cluster\_probs}[g, i, j, k] \gets 1$
+                  \ENDIF
+              \ENDFOR
+              \STATE Normalize $\texttt{cluster\_probs}[g, i, j, :]$ by dividing each element by the sum of all elements in that row.
           \ENDFOR
-          \STATE Normalize $\texttt{cluster\_probs}[g, j,]$ by dividing each element by the sum of all elements in that row.
       \ENDFOR
   \ENDFOR
   
   \RETURN \texttt{cluster\_probs}
   \end{algorithmic}
-  \end{algorithm}
+\end{algorithm}
+
 
 
 \section{Experiment Results}
