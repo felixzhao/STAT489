@@ -185,9 +185,25 @@ This advantage stems from two key factors: firstly, ordinal data do not presuppo
 
 % End From VUW 487 Report
 
-\section{Addition work (TODO)}
+\subsection{Scope and Contributions of This Work}
 
-TODO
+Building on the foundations laid by existing research on ordinal data, Finite Mixture Models (FMM), and the Ordered Stereotype Model (OSM), this paper aims to extend these methodologies to enable effective cluster prediction for unseen data. In particular, we develop an extension of the FMM framework to incorporate OSM, demonstrating how these methods can be applied not only to classify existing observations but also to predict cluster membership for new instances.
+
+The primary contributions of this work are as follows:
+
+\begin{enumerate}
+    \item \textbf{Extension of FMM for Cluster Prediction}: We extend the FMM-based clustering model for ordinal data to provide predictive capabilities for new, unlabeled data. This is achieved by constructing a prediction function that, after estimating the model parameters from labeled training data, can directly assign cluster labels to new observations. The approach leverages the structure of the OSM to efficiently compute cluster probabilities, ensuring scalability and robustness in real-world applications.
+
+    \item \textbf{Detailed Parameter Analysis}: We conduct a comprehensive examination of the components of the probability function, including the cluster effect, column effect, and covariate effect. This detailed analysis allows us to better understand how these parameters contribute to the clustering process, providing deeper insights into the interaction between different factors in the model.
+
+    \item \textbf{Design and Validation through Simulation}: To empirically validate the effectiveness of the proposed method, we designed two types of data simulations: the OSM Simulation and the Normal Distribution Simulation. These simulations were used to test the model under various parameter settings, allowing us to evaluate the performance of the extended FMM across different scenarios. 
+
+    \item \textbf{Replication Study for Stability}: To assess the stability and consistency of the proposed model, we conducted a replication study by running multiple experiments with different random seeds. This analysis provided insights into the robustness of the model under varying initial conditions, thereby demonstrating the reliability of our results.
+\end{enumerate}
+
+Overall, this paper presents a novel extension of the FMM framework that enables efficient cluster prediction for ordinal data, supported by rigorous experimentation and analysis. 
+The findings contribute to the broader literature by expanding the application of FMM to predictive clustering tasks, offering new avenues for analyzing complex ordinal datasets.
+
 
 \section{Statistical-based Ordinal Data Clustering}
 
