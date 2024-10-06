@@ -834,15 +834,39 @@ With this increase, the model's prediction accuracy improved substantially, indi
 In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
 
 
-\subsection{Prediction with Normal Distribution simulate}
+\subsection{Prediction with Normal Distribution Simulation}
 
-The experiments, based on different Normal distribution simulations, 
-utilized the same EM algorithm and were conducted exclusively for two clusters, 
-accounting for column effects as well.
+In this set of experiments, we evaluated the clustering performance of the Ordered Stereotype Model (OSM) using different Normal distribution simulations. 
+The experiments were conducted exclusively for two clusters, incorporating column effects to understand how the model performs under varying conditions. 
+The EM algorithm was applied consistently across all experiments, with the number of EM cycles set to 100, the start EM cycles set to 5, and the number of starts (\textit{nstarts}) set to 5.
 
-As shown in ~\ref*{fig:dist_acc} , all experiments resulted in very high overall accuracy. 
-Additionally, the confusion matrices in Tables ~\ref*{tab:nor_close}, ~\ref*{tab:nor_far} and  ~\ref*{tab:nor_cuts}
-demonstrate that the predictions for each cluster are highly accurate.
+Figure~\ref{fig:dist_acc} presents the prediction accuracy for three distinct scenarios: "Close center," "Far center," and "Different distributions with the same cuts." 
+The model's performance in all scenarios was highly effective, achieving accuracy values close to or equal to 1. Specifically, the prediction accuracy for the "Close center" scenario reached 0.99, while the accuracy for both the "Far center" and "Different distributions with the same cuts" scenarios was 1. 
+These results indicate the robustness of the model under various Normal distribution configurations.
+
+The confusion matrices for these experiments are provided in Tables~\ref{tab:nor_close}, \ref{tab:nor_far}, and \ref{tab:nor_cuts}, which provide a more detailed view of the model's classification results. 
+For the "Close center" scenario (Table~\ref{tab:nor_close}), there were only 3 instances misclassified out of 300 total samples, highlighting the model's ability to distinguish between clusters even when their centers are relatively close. 
+In contrast, for both the "Far center" (Table~\ref{tab:nor_far}) and "Different distributions with the same cuts" (Table~\ref{tab:nor_cuts}) scenarios, no misclassifications were observed, resulting in perfect accuracy for these experiments.
+
+\subsubsection*{Analysis and Insights}
+
+The high accuracy achieved across different Normal distribution configurations indicates the strength of the OSM-based clustering model in handling various data distributions. 
+The slight drop in accuracy observed in the "Close center" scenario suggests that when cluster centers are very close to each other, the model faces a minor challenge in distinguishing between the clusters. 
+This is a reasonable outcome, as closer cluster centers inherently introduce overlap in the data, making separation more difficult. 
+Despite this, the misclassification rate remains extremely low, demonstrating that the model is still highly reliable even in more challenging scenarios.
+
+For the "Far center" scenario, the cluster centers were further apart, which led to perfect classification accuracy. 
+This indicates that the separation between clusters plays a crucial role in determining the model's performance, with greater distances leading to more distinct cluster assignments. 
+Similarly, the "Different distributions with the same cuts" scenario also resulted in perfect accuracy, suggesting that the choice of cuts does not significantly impact performance when the underlying cluster centers are adequately separated.
+
+\subsubsection*{Summary}
+
+Overall, the results indicate that the OSM-based clustering model can effectively distinguish between clusters even under challenging Normal distribution configurations. 
+The near-perfect accuracy highlights the model's capacity to handle different cluster scenarios, demonstrating its reliability for tasks involving normally distributed data. 
+The slight misclassification observed in the "Close center" scenario suggests that the closeness of the cluster centers may introduce a minor degree of ambiguity, but it remains negligible in the context of overall performance. 
+These insights provide confidence in the consistency of the OSM approach for clustering ordinal data, particularly when adequate cluster separation is achievable.
+
+TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
 
 \begin{figure}[htbp!]
   \centering
