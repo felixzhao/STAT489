@@ -651,6 +651,8 @@ From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( 
 This improvement suggests that a larger number of response variables provides more information for distinguishing between clusters, leading to better model performance. 
 Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more covariate data enhances the clustering capability of the model.
 
+TODO: ADD 20, 30, 50 Ys for 5 clusters
+
 \subsubsection*{Prediction with Different Numbers of Clusters}
 
 In the second set of experiments, we investigated the impact of varying the number of clusters while keeping other parameters constant. 
@@ -676,7 +678,6 @@ However, as the number of clusters increases, the complexity of the clustering t
 The results highlight the importance of appropriately selecting the number of response variables and clusters to ensure the model performs effectively. 
 When the number of clusters is high, more response variables are necessary to capture the complexity of the data and achieve reliable cluster predictions. 
 This finding is crucial for practical applications where the model's performance depends on balancing the granularity of clustering with the availability of data.
-
 
 \begin{figure}[htbp!]
   \centering
@@ -896,7 +897,18 @@ demonstrate that the predictions for each cluster are highly accurate.
   \end{minipage}
 \end{table}
 
-\subsubsection*{Normal Distribution simulation for 5 clusters with 100 Ys}
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/dist_simu/dist_5_clusters.png}
+  \caption{Normal Distribution Simulations for 5 clusters and 3 categories with same cuts at -1 and 1.
+   (The sample value if less then cut 1 is category 1, between cut 1 and cut 2 is category 2, and larger than cut 2 is category 3.)
+  }
+  \label{fig:dist_5_clus}
+\end{figure}
+
+% end of Normal Dist experiment
+
+\subsection{Compare prediction results between OSM simulation with Noraml simulation}
 
 \begin{table}[htbp!]
   \centering
@@ -936,22 +948,6 @@ demonstrate that the predictions for each cluster are highly accurate.
   \end{minipage}
 
 \end{table}
-
-
-\begin{figure}[htbp!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/dist_simu/dist_5_clusters.png}
-  \caption{Normal Distribution Simulations for 5 clusters and 3 categories with same cuts at -1 and 1.
-   (The sample value if less then cut 1 is category 1, between cut 1 and cut 2 is category 2, and larger than cut 2 is category 3.)
-  }
-  \label{fig:dist_5_clus}
-\end{figure}
-
-\section{Experiment Results analysis}
-
-\subsection{Compare prediction results between OSM simulation with Noraml simulation}
-
-TODO
 
 
 
