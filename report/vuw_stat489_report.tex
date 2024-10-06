@@ -623,9 +623,10 @@ In this work we reordering the fitted clusters in order of decreasing $\alpha$ t
 
 \subsection{Prediction with OSM simulate}
 
-\subsubsection*{Prediction with differet number of Ys}
+\subsubsection*{Prediction with Different Numbers of \( Y \) Values}
 
-This experiments use following parameter value.
+This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). The parameters used in this experiment are as follows:
+
 \[
 \begin{aligned}
 G &= 2, \\
@@ -636,31 +637,46 @@ q &= 3, \\
 \pi &= \mathbf{c}(0.5, 0.5).
 \end{aligned}
 \]
+
+Additionally, the covariate effect, \(\beta\), was generated from a uniform distribution over the interval \([-1, 1]\):
+
 \[
 \beta \sim \mathcal{U}(-1, 1)
 \]
-For 20 Ys Experiment, we generated 20 values of $\beta$ from a uniform distribution over the interval $[-1, 1]$.
-And in 30 Ys, 50 Ys experiments, $\beta$ generated from 30 and 50 values from uniform distribution as well.
-In ~\ref*{tab:20_ys}, ~\ref*{tab:30_ys} and ~\ref*{tab:50_ys} shows the confusion matrix of these prediction result of different number of Ys.
 
-\subsubsection*{Prediction with differet number of Cluster}
+For the 20 \( Y \) experiment, we generated 20 values of \(\beta\), while for the 30 and 50 \( Y \) experiments, 30 and 50 values of \(\beta\) were generated, respectively. 
+The confusion matrices for these experiments are shown in Tables~\ref{tab:20_ys}, \ref{tab:30_ys}, and \ref{tab:50_ys}, demonstrating the model's clustering prediction results for different numbers of response variables.
 
-In both experiments of different number of cluster, 
-the default parameter values were used across different clusters, 
-with 20 values of Y generated for each experiment. 
+From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( Y \) values increases, the prediction accuracy also improves. 
+This improvement suggests that a larger number of response variables provides more information for distinguishing between clusters, leading to better model performance. 
+Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more covariate data enhances the clustering capability of the model.
+
+\subsubsection*{Prediction with Different Numbers of Clusters}
+
+In the second set of experiments, we investigated the impact of varying the number of clusters while keeping other parameters constant. 
+The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. 
 The EM algorithm was configured with the following parameters: EM cycles = 100, start EM cycles = 5, and nstarts = 5.
 
-For the three-cluster experiment, the values of $\alpha$ were set to -1, 0, and 1, 
-while the cluster proportions ($\pi$) were 0.33, 0.34, and 0.33, respectively. 
+For the three-cluster experiment, the values of \(\alpha\) were set to \(-1, 0, 1\), and the cluster proportions (\(\pi\)) were set to 0.33, 0.34, and 0.33, respectively. 
+In the five-cluster experiment, \(\alpha\) values were set to \(-1, -0.5, 0, 0.5, 1\), with equal cluster proportions of 0.2 for each cluster. 
+The confusion matrices for the different cluster configurations are presented in Tables~\ref{tab:2_clu}, \ref{tab:3_clu}, and \ref{tab:5_clu}.
 
-In the five-cluster experiment, $\alpha$ values were set to -1, -0.5, 0, 0.5, and 1, 
-with equal cluster proportions of 0.2 for each cluster.
+Figure~\ref{fig:exp_res}(b) illustrates the overall prediction accuracy for different numbers of clusters. 
+It is evident that as the number of clusters increases, the prediction accuracy decreases significantly. 
+The model achieved an accuracy of 0.96 for 2 clusters, while the accuracy dropped to 0.2461 for 5 clusters. 
+This rapid decline in accuracy can be attributed to the increased complexity introduced by a larger number of clusters, which requires more information to accurately distinguish between them. 
+With only 20 \( Y \) values, the information available was insufficient to clearly differentiate among 5 clusters, leading to decreased performance.
 
-In ~\ref*{tab:2_clu}, ~\ref*{tab:3_clu} and ~\ref*{tab:5_clu} shows the confusion matrix of these prediction result of different number of clusters.
+\subsubsection*{Summary and Observations}
 
-From ~\ref*{fig:exp_res} we found the prediciton overall accuracy of cluster.
-It keep increase when number of Ys increased,
-But it shows significant fast decreasing when number of cluster is increased.
+Overall, the experiments demonstrate that the number of response variables (\( Y \)) and the number of clusters (\( G \)) have a significant impact on the clustering performance of the Ordered Stereotype Model. 
+Increasing the number of \( Y \) values provides more information to the model, resulting in improved clustering accuracy. 
+However, as the number of clusters increases, the complexity of the clustering task also increases, and the model requires a larger amount of information to maintain high accuracy.
+
+The results highlight the importance of appropriately selecting the number of response variables and clusters to ensure the model performs effectively. 
+When the number of clusters is high, more response variables are necessary to capture the complexity of the data and achieve reliable cluster predictions. 
+This finding is crucial for practical applications where the model's performance depends on balancing the granularity of clustering with the availability of data.
+
 
 \begin{figure}[htbp!]
   \centering
