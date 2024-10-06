@@ -1024,7 +1024,35 @@ This is particularly critical for ordinal data, where maintaining the natural or
 
 \section{Conclusion and Future Directions}
 
-TODO
+In this paper, we extended the clustering methodology for ordinal data using the Ordered Stereotype Model (OSM) within the framework of Finite Mixture Models (FMM). We focused on enabling the prediction of cluster membership for new, unlabeled data. This extension is crucial for applying ordinal data analysis in dynamic environments where new data is continuously generated, requiring efficient and accurate classification. Our approach involved constructing a prediction function that, after model parameter estimation, allows for direct cluster assignment of new observations, supported by both OSM simulations and Normal distribution-based simulations.
+
+We conducted experiments that systematically varied parameters such as the number of response variables (\( Y \)) and the number of clusters (\( G \)), as well as different configurations of the OSM model parameters (\(\alpha\), \(\mu\), \(\phi\), \(\beta\), and \(\pi\)). Our results demonstrated that the model's clustering performance improves with an increased number of response variables and that prediction accuracy decreases significantly as the number of clusters increases, emphasizing the importance of balancing model complexity with available information. The experiments with Normal distribution-based simulations further validated the robustness of our approach, with near-perfect accuracy across different cluster scenarios.
+
+We also addressed the issue of label switching, a common challenge in clustering algorithms that employ the Expectation-Maximization (EM) approach. By implementing a reordering step to consistently align cluster labels based on the estimated probabilities of the latent variable \(\alpha\), we were able to mitigate the label switching problem, ensuring reliable evaluation of model predictions across multiple runs.
+
+The replication study revealed the robustness of our model, with a low standard deviation of prediction accuracy across experiments with different random seeds, reinforcing the consistency of the model's performance. This highlights the stability of our approach and its suitability for real-world applications where reliable clustering predictions are essential.
+
+\subsection{Future Directions}
+
+While the results presented in this paper show promising advancements in cluster prediction for ordinal data, several future directions could further enhance the applicability and performance of the proposed methodology:
+
+\begin{itemize}
+    \item \textbf{Integration with Machine Learning Techniques}: One potential future direction is to integrate traditional statistical models like OSM with modern machine learning techniques, such as deep learning. This hybrid approach could improve the model's ability to capture complex relationships in large, heterogeneous datasets while maintaining interpretability.
+
+    \item \textbf{Expanding to Higher-Dimensional Data}: The current work focused on scenarios involving two to five clusters. Expanding the methodology to handle more complex, higher-dimensional data with a larger number of clusters could provide valuable insights into its scalability and efficiency. Additional research is needed to explore strategies for improving accuracy when predicting a greater number of clusters, particularly when available data is limited.
+
+    \item \textbf{Alternative Model Structures for Ordinal Data}: Investigating alternative model structures, such as Bayesian approaches or hierarchical mixture models, may further improve clustering performance for ordinal data. These methods could provide additional flexibility in modeling the dependencies between response variables, thus enhancing predictive capabilities.
+
+    \item \textbf{Real-World Data Validation}: Although our simulations demonstrated the robustness and effectiveness of the proposed model, future research should involve validating the model on real-world ordinal datasets from various domains, such as social sciences, healthcare, or market research. This step is critical to assess the practical utility of the model and ensure its generalizability beyond the controlled environment of simulated data.
+
+    \item \textbf{Exploring the Impact of Covariates}: While this study considered the effect of covariates in the clustering process, future work could explore the impact of additional covariates and more complex interactions between covariates and clusters. Understanding these effects could provide deeper insights into how different factors contribute to the clustering structure, thereby improving the model's interpretability and application.
+
+    \item \textbf{Enhanced Handling of Label Switching}: Although our deterministic relabeling strategy effectively mitigated label switching, further work is needed to develop more sophisticated techniques that can handle label switching in a wider variety of clustering contexts. This is especially important for large-scale clustering applications involving many clusters.
+
+\end{itemize}
+
+In conclusion, this work contributes to the existing body of literature on ordinal data analysis by extending the FMM framework to incorporate predictive clustering capabilities, supported by rigorous experimentation and analysis. The proposed methodology provides a solid foundation for future studies and opens up new avenues for effectively utilizing clustering in dynamic environments with ordinal data. We are confident that the insights gained from this research will serve as a stepping stone for further developments in the area of ordinal data clustering and prediction.
+
 
 \printbibliography
 
