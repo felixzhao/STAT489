@@ -2,6 +2,7 @@
 
 \usepackage{graphicx, amsmath}
 \usepackage{subcaption}
+\usepackage{float}
 
 % 0. Referencing style, APA-like referencing
 \usepackage[backend=biber, style=apa, natbib=true]{biblatex}
@@ -403,7 +404,7 @@ As shown in Figure~\ref{fig:alpha},
 the cluster has high $alpha$ value leading to have larger probability to have sample in high category.
 And cluster has lower $alpha$ value have larger probability to have sample in low category.
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -433,7 +434,7 @@ and the $\mu_2$ is in the middle.
 ( TODO: This is related to defalut $phi$ value. 
 Need to check the detial reason.)
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -463,7 +464,7 @@ particularly affecting the category with the increased $\phi$ value.
 Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, 
 with a more pronounced effect on the cluster associated with the higher $\phi$ values.
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -485,7 +486,7 @@ from the columns increase as the $\beta$ values deviate further from zero.
 
 Additionally, negative $\beta$ values result in a higher probability of sampling from the lower categories, 
 whereas positive $\beta$ values increase the likelihood of sampling from the higher categories.
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -515,7 +516,7 @@ In EM Algorithm, the $\pi$ parameter effects the sample size of each cluster.
 In Figure~\ref{fig:pi} shows when $\pi$ value small leading to less sample size.
 when $\pi$ larger then the cluster has more sample size.
 When $\pi$ same then the overall sample size is close.
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
@@ -549,7 +550,7 @@ with same two cuts at $0$ and $2.5$,
 Figure~\ref*{fig:dist_sim} (d) clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
 with same two cuts at $1$ and $2.5$,
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
@@ -661,7 +662,7 @@ From ~\ref*{fig:exp_res} we found the prediciton overall accuracy of cluster.
 It keep increase when number of Ys increased,
 But it shows significant fast decreasing when number of cluster is increased.
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \begin{subfigure}{0.49\textwidth}
       \centering
@@ -678,7 +679,7 @@ But it shows significant fast decreasing when number of cluster is increased.
   \label{fig:exp_res}
 \end{figure}
 
-\begin{table}[ht]
+\begin{table}[htbp!]
   \centering
 
   % Title above all tables
@@ -728,7 +729,7 @@ But it shows significant fast decreasing when number of cluster is increased.
 
 % confustion matrix of diff clusters
 
-\begin{table}[ht]
+\begin{table}[htbp!]
   \centering
 
   % Title above all tables
@@ -800,7 +801,7 @@ But it shows significant fast decreasing when number of cluster is increased.
 
 \end{table}
 
-\begin{table}[ht]
+\begin{table}[htbp!]
   \centering
 
   % Title above all tables
@@ -833,7 +834,7 @@ As shown in ~\ref*{fig:dist_acc} , all experiments resulted in very high overall
 Additionally, the confusion matrices in Tables ~\ref*{tab:nor_close}, ~\ref*{tab:nor_far} and  ~\ref*{tab:nor_cuts}
 demonstrate that the predictions for each cluster are highly accurate.
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/experiments/norm_dist.png}
   \caption{Prediction Accuracy for Normal with different parameter and cuts}
@@ -841,7 +842,7 @@ demonstrate that the predictions for each cluster are highly accurate.
 \end{figure}
 
 
-\begin{table}[ht]
+\begin{table}[htbp!]
   \centering
 
   % Title above all tables
@@ -888,7 +889,7 @@ demonstrate that the predictions for each cluster are highly accurate.
 
 \subsubsection*{Normal Distribution simulation for 5 clusters with 100 Ys}
 
-\begin{figure}[ht]
+\begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/dist_simu/dist_5_clusters.png}
   \caption{Normal Distribution Simulations for 5 clusters and 3 categories with same cuts at -1 and 1.
