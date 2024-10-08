@@ -582,8 +582,7 @@ In this study, we divided the simulated data into training and validation sets.
 
 First, We use clustord R packagae \cite{clustord2024} to fit the parameters by the Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data, using only the response variable $Y$.
 
-Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, and column combination. 
-These probabilities were then standardized within each cluster.
+Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, column and row combination for each new observation in the validation set.
 
 Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities.
 
@@ -618,9 +617,38 @@ In this work we reordering the fitted clusters in order of decreasing $\alpha$ t
   \end{algorithmic}
 \end{algorithm}
 
+\subsection{Handling Label Switching in Model Predictions}
+
+One of the common issues encountered in clustering analysis, 
+particularly when using probabilistic models such as the Expectation-Maximization (EM) algorithm, 
+is the phenomenon known as "label switching." 
+
+Label switching occurs when the clustering algorithm assigns different cluster identifiers (labels) to similar data points across different runs, 
+even though the underlying clustering structure remains consistent. 
+This can be particularly problematic in evaluating the consistency of ordinal data predictions, 
+as correct predictions may receive mismatched cluster labels, 
+thereby obscuring the true performance of the model.
+
+In this work, we address the issue of label switching by implementing a post-processing step to reorder the estimates of cluster-specific parameters, 
+specifically the estimated probability of the latent variable 
+$\alpha$, produced by the EM algorithm. By reordering these probability estimates, 
+we ensure that the cluster labels are aligned consistently across multiple runs, 
+thereby maintaining interpretability and allowing for a more accurate assessment of model performance.
+
+The reordering process is performed based on the values of the estimated probabilities of 
+$\alpha$, ensuring that clusters are always labeled in a consistent manner—e.g., 
+from the smallest to the largest probability value. 
+This deterministic relabeling method effectively mitigates the label switching problem, 
+allowing us to accurately evaluate the correspondence between predicted clusters and the true structure of the data.
+
+Through this approach, we are able to compare cluster assignments across different experiments without ambiguity, 
+ensuring that the predicted labels are not arbitrarily permuted, and thereby enhancing the reliability of our model evaluation. 
+This is particularly critical for ordinal data, where maintaining the natural ordering of the clusters is essential for meaningful interpretation.
 
 
 \section{Experiment Results}
+
+TODO, explain two group experiments, one based on OSM simulation, another based on Normal dist simulation.
 
 \subsection{Prediction with OSM simulate}
 
@@ -834,6 +862,7 @@ With this increase, the model's prediction accuracy improved substantially, indi
 
 In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
 
+\clearpage
 
 \subsection{Prediction with Normal Distribution Simulation}
 
@@ -917,7 +946,7 @@ TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
     \textbf{Prediction} & 1 & 147 & 0 \\
                         & 2 & 0 & 153 \\
     \end{tabular}
-    \caption{different distributions with same cuts}
+    \caption{medium center}
     \label{tab:nor_cuts}
   \end{minipage}
 \end{table}
@@ -932,6 +961,8 @@ TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
 \end{figure}
 
 % end of Normal Dist experiment
+
+\clearpage
 
 \subsection{Compare prediction results between OSM simulation with Noraml simulation}
 
@@ -974,7 +1005,7 @@ TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
 
 \end{table}
 
-
+\clearpage
 
 \section{Replication of Experiment}
 
@@ -995,33 +1026,6 @@ reported accuracy is representative and not merely a result of favorable initial
 Overall, the replication analysis supports the reliability of our experimental results, indicating that our
 model produces stable predictions irrespective of the variability introduced by different random seeds.
 
-\section{Handling Label Switching in Model Predictions}
-
-One of the common issues encountered in clustering analysis, 
-particularly when using probabilistic models such as the Expectation-Maximization (EM) algorithm, 
-is the phenomenon known as "label switching." 
-
-Label switching occurs when the clustering algorithm assigns different cluster identifiers (labels) to similar data points across different runs, 
-even though the underlying clustering structure remains consistent. 
-This can be particularly problematic in evaluating the consistency of ordinal data predictions, 
-as correct predictions may receive mismatched cluster labels, 
-thereby obscuring the true performance of the model.
-
-In this work, we address the issue of label switching by implementing a post-processing step to reorder the estimates of cluster-specific parameters, 
-specifically the estimated probability of the latent variable 
-$\alpha$, produced by the EM algorithm. By reordering these probability estimates, 
-we ensure that the cluster labels are aligned consistently across multiple runs, 
-thereby maintaining interpretability and allowing for a more accurate assessment of model performance.
-
-The reordering process is performed based on the values of the estimated probabilities of 
-$\alpha$, ensuring that clusters are always labeled in a consistent manner—e.g., 
-from the smallest to the largest probability value. 
-This deterministic relabeling method effectively mitigates the label switching problem, 
-allowing us to accurately evaluate the correspondence between predicted clusters and the true structure of the data.
-
-Through this approach, we are able to compare cluster assignments across different experiments without ambiguity, 
-ensuring that the predicted labels are not arbitrarily permuted, and thereby enhancing the reliability of our model evaluation. 
-This is particularly critical for ordinal data, where maintaining the natural ordering of the clusters is essential for meaningful interpretation.
 
 \section{Conclusion and Future Directions}
 
