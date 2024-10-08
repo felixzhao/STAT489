@@ -3,6 +3,7 @@
 \usepackage{graphicx, amsmath}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{bm}
 
 % 0. Referencing style, APA-like referencing
 \usepackage[backend=biber, style=apa, natbib=true]{biblatex}
@@ -186,7 +187,7 @@ This advantage stems from two key factors: firstly, ordinal data do not presuppo
 
 % End From VUW 487 Report
 
-\subsection{Scope and Contributions of This Work}
+\section{Scope and Contributions of the latest project}
 
 Building on the foundations laid by existing research on ordinal data, Finite Mixture Models (FMM), and the Ordered Stereotype Model (OSM), this paper aims to extend these methodologies to enable effective cluster prediction for unseen data. In particular, we develop an extension of the FMM framework to incorporate OSM, demonstrating how these methods can be applied not only to classify existing observations but also to predict cluster membership for new instances.
 
@@ -195,7 +196,7 @@ The primary contributions of this work are as follows:
 \begin{enumerate}
     \item \textbf{Extension of FMM for Cluster Prediction}: We extend the FMM-based clustering model for ordinal data to provide predictive capabilities for new, unlabeled data. This is achieved by constructing a prediction function that, after estimating the model parameters from labeled training data, can directly assign cluster labels to new observations. The approach leverages the structure of the OSM to efficiently compute cluster probabilities, ensuring scalability and robustness in real-world applications.
 
-    \item \textbf{Detailed Parameter Analysis}: We conduct a comprehensive examination of the components of the probability function, including the cluster effect, column effect, and covariate effect. This detailed analysis allows us to better understand how these parameters contribute to the clustering process, providing deeper insights into the interaction between different factors in the model.
+    \item \textbf{Detailed Parameter Analysis}: We conduct a comprehensive examination of the components of the OSM, including the cluster effect, column effect, and covariate effect. This detailed analysis allows us to better understand how these parameters contribute to the clustering process, providing deeper insights into the interaction between different factors in the model.
 
     \item \textbf{Design and Validation through Simulation}: To empirically validate the effectiveness of the proposed method, we designed two types of data simulations: the OSM Simulation and the Normal Distribution Simulation. These simulations were used to test the model under various parameter settings, allowing us to evaluate the performance of the extended FMM across different scenarios. 
 
@@ -223,7 +224,7 @@ Suppose the data is partitioned into \(g\) clusters.
 
 The model for the probability of category \(k\) is then expressed as follows:
 \begin{equation}
-  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + X_i^T \cdot \theta \right),
+  \log\left(\frac{P(Y = k)}{P(Y = 1)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + \bm{X}_i^T \cdot \bm{\theta} \right),
 \end{equation}
 where:
 
@@ -231,7 +232,9 @@ where:
     \item \(\mu_k\) is the intercept for category \(k\), with \(\mu_1\) set to zero to provide a reference category.
     \item \(\alpha_g\) represents the effect associated with cluster \(g\).
     \item \(\beta_j\) represents the effect associated with column \(j\).
-    \item \(X_i^T \cdot \theta\) represents the effect associated with row \(i\), where \(\theta\) is a vector of coefficients.
+    % \item $\bm{X}$ TODO.
+    % \item $\bm{\theta}$ TODO.
+    \item \(X_i^T \cdot \theta\) represents the effect from the covariates associated with row \(i\), where \(\theta\) is a vector of coefficients.
 \end{itemize}
 
 A key feature of the Ordered Stereotype Model is the parameter \(\phi_k\), 
@@ -275,13 +278,13 @@ The EM algorithm for mixture models assumes that a set of latent variables $Z$ i
 
 During the E-step, the algorithm estimates the expected value of the log-likelihood function, with respect to the conditional distribution of the latent variables given the observed data and the current estimates of the parameters. This step can be formally expressed as follows:
 \begin{equation}
-Q(\theta | \theta^{(t)}) = E_{Z|X,\theta^{(t)}}[\log L(\theta; X, Z)]
+Q(\theta | \theta^{(t)}) = E_{Z|X, Y, \theta^{(t)}}[\log L(\theta; X, Y, Z)]
 \end{equation}
-where \( \theta \) denotes the parameter vector, \( X \) represents the observed data, \( Z \) are the latent variables, \( L \) is the likelihood function, and \( \theta^{(t)} \) are the parameter estimates from the previous iteration.
+where \( \theta \) denotes the parameter vector, \(X \) respresents the covariates, \( Y \) represents the observed data, \( Z \) are the latent variables, \( L \) is the likelihood function, and \( \theta^{(t)} \) are the parameter estimates from the previous iteration.
 
 In the M-step, the algorithm maximizes the expected log-likelihood found in the E-step with respect to the parameters to obtain new parameter estimates:
 \begin{equation}
-\theta^{(t+1)} = \arg \max_{\theta} Q(\theta | \theta^{(t)})
+\hat{\theta}^{(t+1)} = \arg \max_{\theta} Q(\theta | \theta^{(t)})
 \end{equation}
 
 \subsubsection{E-step (Expectation Step)}
@@ -291,7 +294,7 @@ During the Expectation step, the EM algorithm computes the expected value of the
 For a mixture model, the posterior probability (also known as the responsibility) that observation i originates in component g is calculated as:
 
 \begin{equation}
-Z_{ig} = \frac{\pi_g f_g(\mathbf{y_i}|\theta_g)}{\sum_{j=1}^{G} \pi_j f_j(\mathbf{y_i} \mid \theta_j)}
+\hat{Z}_{ig} = \frac{\pi_g f_g(\mathbf{y_i}|\theta_g)}{\sum_{j=1}^{G} \pi_j f_j(\mathbf{y_i} \mid \theta_j)}
 \end{equation}
 
 \subsubsection{M-step (Maximization Step)}
@@ -302,7 +305,7 @@ This involves updating the estimates of both the parameters of the component dis
 Update the mixing coefficients:
 
 \begin{equation}
-\pi_g^{new} = \frac{1}{N} \sum_{i=1}^{N} Z_{ig}
+\hat{\pi}_g^{new} = \frac{1}{N} \sum_{i=1}^{N} \hat{Z}_{ig}
 \end{equation}
 
 The remaining parameters are updated using numerical optimization.
@@ -368,13 +371,11 @@ Then, the prediction of the cluster of row would be maximum $\hat{Z}_{ig}$ over 
 
 The model's accuracy is measured by how well the predicted clusters match the actual test data classifications.
 
-\section{Experiments}
-
-\subsection{Data Simulations}
+\section{Data Simulations to understanding the parameters}
 
 In this section, we conduct experiments based on data generated from specified OSM parameters to analyze the effects of cluster and category distributions.
 
-\subsubsection{OSM (Ordered Stereotype Model) Simulation}
+% \subsection{OSM (Ordered Stereotype Model) Simulation}
 We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameter $\alpha$. The default parameters used in the simulations are as follows:
 \[
 \begin{aligned}
@@ -389,7 +390,7 @@ q &= 3, \\
 \]
 All parameters except for $\beta$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
 
-\subsubsection*{Effect of Different $\alpha$ Values}
+\subsection{Effect of Different $\alpha$ Values}
 In the OSM framework, $alpha$ is the argument of clusters. the sum of the $\alpha$ parameters is constrained to equal zero. 
 We examine the impact of varying the $\alpha$ values using the following configurations:
 \[
@@ -415,7 +416,7 @@ And cluster has lower $alpha$ value have larger probability to have sample in lo
 \end{figure}
 
 % mu
-\subsubsection*{Effect of Different $\mu$ Values}
+\subsection{Effect of Different $\mu$ Values}
 In OSM, $mu$ is argument of category. 
 The first value must be zero. There is no value limitation of $mu$, it can be large or negative.
 To investigate the impact of varying $\mu$ values on the cluster distributions, 
@@ -445,7 +446,7 @@ Need to check the detial reason.)
 \end{figure}
 
 % phi
-\subsubsection*{Effect of Different $\phi$ Values}
+\subsection{Effect of Different $\phi$ Values}
 The parameter $\phi$ represents the ordinal effect for each category, reflecting the cumulative probability across ordered categories. 
 Importantly, the $\phi$ values must start from 0 and the $\phi$ value of the last category must be 1. 
 To evaluate the impact of different $\phi$ values, we consider the following configurations:
@@ -475,7 +476,7 @@ with a more pronounced effect on the cluster associated with the higher $\phi$ v
 \end{figure}
 
 % beta
-\subsubsection*{different $\beta$ value}
+\subsection{different $\beta$ value}
 The parameter $\beta$ represents the effect of each column in the data. 
 Figure~\ref{fig:beta} illustrates three different sets of $\beta$ values across five columns. 
 When the $\beta$ values are close to zero, the impact on the data distribution is minimal. 
@@ -511,7 +512,7 @@ whereas positive $\beta$ values increase the likelihood of sampling from the hig
 \end{figure}
 
 % pi
-\subsubsection*{Effect of Different $\pi$ Values}
+\subsection{Effect of Different $\pi$ Values}
 In EM Algorithm, the $\pi$ parameter effects the sample size of each cluster. 
 In Figure~\ref{fig:pi} shows when $\pi$ value small leading to less sample size.
 when $\pi$ larger then the cluster has more sample size.
@@ -527,7 +528,7 @@ When $\pi$ same then the overall sample size is close.
 \end{figure}
 
 % Normal Dist Simu Section
-\subsubsection{Normal Distributions Simulation}
+\section{Ordinal Data Simulations by Normal Distributions}
 
 In order to better simulate the actual situation.
 In this work, we introduced another approach to simulation the ordinal data 
@@ -555,19 +556,19 @@ with same two cuts at $1$ and $2.5$,
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
     \includegraphics[width=\textwidth]{images/dist_simu/nor_close.png} % Replace with your second image path
-    \caption{Clusters follow different distribution with close center\\ cut1=0, cut2=2.5}
+    \caption{Clusters follow different distribution with close centre\\ cut1=0, cut2=2.5}
 \end{subfigure}
   \hfill
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
     \includegraphics[width=\textwidth]{images/dist_simu/nor.png} % Replace with your first image path
-    \caption{Clusters follow different distribution with same cuts\\ cut1=-1, cut2=1}
+    \caption{Clusters follow different distribution with medium distance centre\\ cut1=-1, cut2=1}
 \end{subfigure}
   \hfill
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
       \centering
       \includegraphics[width=\textwidth]{images/dist_simu/nor_far.png} % Replace with your third image path
-      \caption{Clusters follow different distribution with far center\\ cut1=1, cut2=2.5}
+      \caption{Clusters follow different distribution with far centre\\ cut1=1, cut2=2.5}
   \end{subfigure}
   
   \caption{Normal Distribution Simulations: with 3 clusters. the sample value if less then cut 1 is category 1, between cut 1 and cut 2 is category 2, and larger than cut 2 is category 3.}
@@ -575,11 +576,11 @@ with same two cuts at $1$ and $2.5$,
 \end{figure}
 
 
-\subsection{Experiments approach}
+\section{Experiments approach}
 
 In this study, we divided the simulated data into training and validation sets.
 
-First, the Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data, using only the response variable $Y$.
+First, We use clustord R packagae \cite{clustord2024} to fit the parameters by the Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data, using only the response variable $Y$.
 
 Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, and column combination. 
 These probabilities were then standardized within each cluster.
