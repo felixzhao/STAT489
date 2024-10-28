@@ -965,6 +965,25 @@ TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
 
 \subsection{Compare prediction results between OSM simulation with Noraml simulation}
 
+In this section, we based on 5 clusters prediciton result to compare the prediciton result performance between OSM simulation with Normal simulation.
+both of these two experiments are based on 2500 observations for each cluster, which is 7500 simulation observations in total. 
+
+The Normal Distribution simulation with 100 Ys and following distributions metioned in Figure \ref{fig:dist_5_clus}.
+
+The OSM simulation with 100 Ys, 3 categories and $\beta$ generated from uniform Distribution. The rest parameters are following
+
+The difference in accuracy between the two tables (0.9419 vs. 1.0) highlights that the model performs more consistently with the Normal Distribution simulation, achieving flawless accuracy. 
+In contrast, the OSM simulation shows slight variability, indicating that the model may encounter some challenges when the data distribution is more complex or varied, as represented in the OSM setup.
+
+\[
+\begin{aligned}
+\alpha &= \mathbf{c}(-2, -1, 0, 1, 2), \\
+\mu &= \mathbf{c}(0, 0, 0), \\
+\phi &= \mathbf{c}(0, 0.5, 1), \\
+\pi &= \mathbf{c}(0.2, 0.2, 0.2, 0.2, 0.2).
+\end{aligned}
+\]
+
 \begin{table}[htbp!]
   \centering
 
@@ -998,7 +1017,7 @@ TODO: Add 20, 30, 50 Ys for 5 clusters based on Noraml distribution simulations
                           & \textbf{4} & 0 & 0 & 0 & 737 & 0 \\
                           & \textbf{5} & 0 & 0 & 0 & 0 & 721 \\
     \end{tabular}
-    \caption{5 Clusters Prediction with Normal Distribution simulation}
+    \caption{5 Clusters Prediction with 100 Ys Normal Distribution simulation}
     \label{tab:5_clu_norm_dist}
   \end{minipage}
 
