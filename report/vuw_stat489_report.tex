@@ -831,27 +831,120 @@ This finding is crucial for practical applications where the model's performance
     \label{tab:5_clu}
   \end{minipage}
 
-  % \vspace{1em} % Space between rows
+\end{table}
 
-  % \begin{minipage}{0.8\textwidth}
-  %   \centering
-  %   \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-  %     & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
-  %     \hline
-  %     \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
-  %                         & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  %                         & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  %                         & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  %                         & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  %                         & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  %                         & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
-  %                         & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
-  %   \end{tabular}
-  %   \caption{8 Clusters}
-  %   \label{tab:8_clu1}
-  % \end{minipage}
+\clearpage
+
+\subsubsection{Analysis of more clusters with different number of Ys}
+
+\begin{figure}[htbp!]
+  \centering
+  \begin{subfigure}{0.8\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{images/experiments/3_vs_5_clusters}
+  \end{subfigure}
+  \caption{Prediction Accuracy Bar plot for difference Ys for 3 clusters vs 5 clusters}
+  \label{fig:3vs5}
+\end{figure}
+
+\begin{table}[htbp!]
+  \centering
+  % Title above all tables
+  \caption*{\textbf{Confusion matrix of different number of Clusters with various Ys}}
+
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 334 & 63 & 0 \\
+                          & \textbf{2} & 110 & 383 & 152 \\
+                          & \textbf{3} & 1 & 39 & 268 \\
+    \end{tabular}
+    \caption{3 Clusters with 20 Ys}
+    \label{tab:3_clu_20}
+  \end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+  \centering
+  \begin{tabular}{c|c|c|c|c|c|c}
+    & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+    \hline
+    \textbf{Prediction} & \textbf{1} & 0 & 0 & 0 & 0 & 0 \\
+                        & \textbf{2} & 505 & 201 & 69 & 6 & 0 \\
+                        & \textbf{3} & 0 & 0 & 0 & 0 & 0 \\
+                        & \textbf{4} & 243 & 543 & 730 & 722 & 731 \\
+                        & \textbf{5} & 0 & 0 & 0 & 0 & 0 \\
+  \end{tabular}
+  \caption{5 Clusters with 20 Ys}
+  \label{tab:5_clu_20}
+\end{minipage}
+
+\vspace{1em} % Space between rows
+
+  % First row of tables (2 side by side)
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+              & \textbf{Reference} & 1 & 2 & 3 \\
+    \hline
+    \textbf{Prediction} & 1 & 424 & 121 & 1 \\
+                        & 2 & 21 & 304 & 69 \\
+                        & 3 & 0 & 60 & 350 \\
+    \end{tabular}
+    \caption{3 Clusters with 30 Ys}
+    \label{tab:3_clu_30}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 725 & 546 & 276 & 50 & 2 \\
+                          & \textbf{2} & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{3} & 23 & 197 & 508 & 562 & 363 \\
+                          & \textbf{4} & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{5} & 0 & 1 & 15 & 116 & 366 \\
+    \end{tabular}
+    \caption{5 Clusters with 30 Ys}
+    \label{tab:5_clu_30}
+  \end{minipage}
+
+  \vspace{1em} % Space between rows
+
+  % Second row of tables (2 side by side)
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c}
+              & \textbf{Reference} & 1 & 2 & 3 \\
+    \hline
+    \textbf{Prediction} & 1 & 417 & 30 & 0 \\
+                        & 2 & 28 & 424 & 47 \\
+                        & 3 & 0 & 31 & 373 \\
+    \end{tabular}
+    \caption{3 Clusters with 50 Ys}
+    \label{tab:3_clu_50}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 278 & 35 & 1 & 0 & 0 \\
+                          & \textbf{2} & 428 & 389 & 88 & 2 & 0 \\
+                          & \textbf{3} & 42 & 318 & 586 & 252 & 30 \\
+                          & \textbf{4} & 0 & 2 & 121 & 423 & 354 \\
+                          & \textbf{5} & 0 & 0 & 3 & 51 & 347 \\
+    \end{tabular}
+    \caption{5 Clusters with 50 Ys}
+    \label{tab:5_clu_50}
+  \end{minipage}
 
 \end{table}
+
+
 
 \clearpage
 
