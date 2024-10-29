@@ -432,8 +432,8 @@ Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value.
 It shows the category has high $mu$ value leading to high probability of sample.
 we also can see, $\mu_1$ and $\mu_3$ plots are showing left and right mirror. 
 and the $\mu_2$ is in the middle.
-( TODO: This is related to defalut $phi$ value. 
-Need to check the detial reason.)
+% ( TODO: This is related to defalut $phi$ value. 
+% Need to check the detial reason.)
 
 \begin{figure}[htbp!]
   \centering
@@ -591,7 +591,7 @@ Finally, for each new observation $Y'$ in the validation set, we computed the Z-
 
 Additionally, the defalut parameter given by EM algorithm have label switching problem.
 The label switching is the cluster parameter $\alpha$ not in a correct order, which leading the prediciton logic given wrong prediction.
-% TODO add reference and given more formal definition of "label switching"
+
 In this work we reordering the fitted clusters in order of decreasing $\alpha$ then do predictions based on the reordered clusters.
 
 \begin{algorithm}
@@ -685,8 +685,6 @@ The confusion matrices for these experiments are shown in Tables~\ref{tab:20_ys}
 From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( Y \) values increases, the prediction accuracy also improves. 
 This improvement suggests that a larger number of response variables provides more information for distinguishing between clusters, leading to better model performance. 
 Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more covariate data enhances the clustering capability of the model.
-
-TODO: ADD 20, 30, 50 Ys for 5 clusters
 
 \subsubsection*{Prediction with Different Numbers of Clusters}
 
