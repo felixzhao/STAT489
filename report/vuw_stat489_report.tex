@@ -831,27 +831,29 @@ This finding is crucial for practical applications where the model's performance
     \label{tab:5_clu}
   \end{minipage}
 
-  \vspace{1em} % Space between rows
+  % \vspace{1em} % Space between rows
 
-  \begin{minipage}{0.8\textwidth}
-    \centering
-    \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
-      \hline
-      \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
-                          & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
-                          & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
-    \end{tabular}
-    \caption{8 Clusters}
-    \label{tab:8_clu}
-  \end{minipage}
+  % \begin{minipage}{0.8\textwidth}
+  %   \centering
+  %   \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+  %     & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+  %     \hline
+  %     \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
+  %                         & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  %                         & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  %                         & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  %                         & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  %                         & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  %                         & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
+  %                         & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
+  %   \end{tabular}
+  %   \caption{8 Clusters}
+  %   \label{tab:8_clu1}
+  % \end{minipage}
 
 \end{table}
+
+\clearpage
 
 \subsubsection{Analysis of 8-Cluster Prediction Performance}
 
@@ -867,6 +869,32 @@ To address this issue, we increased the number of \(Y\) values to 100, providing
 With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
 
 In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
+
+\begin{table}[htbp!]
+  \centering
+
+  % Title above all tables
+  % \caption*{\textbf{Confusion matrix of 8 Clusters with 20 Ys}}
+
+  \begin{minipage}{0.8\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
+                          & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
+                          & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
+    \end{tabular}
+    \caption{Confusion matrix of 8 Clusters with 20 Ys}
+    \label{tab:8_clu}
+  \end{minipage}
+
+\end{table}
 
 \clearpage
 
