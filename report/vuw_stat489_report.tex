@@ -835,7 +835,67 @@ This finding is crucial for practical applications where the model's performance
 
 \clearpage
 
-\subsubsection{Analysis of more clusters with different number of Ys}
+\subsubsection{Analysis of 8-Cluster Prediction Performance}
+
+The prediction accuracy for the 8-cluster experiment was notably low, as shown in the confusion matrix and the overall accuracy statistic (see Table~\ref{tab:8_clu}). This result can be attributed to the mismatch between the number of clusters and the amount of information available from the response variable \(Y\).
+
+In this experiment, we attempted to identify 8 distinct clusters using only 20 values of \(Y\). This setup presented a significant limitation: the small number of \(Y\) values did not provide sufficient information to effectively distinguish between a large number of clusters. As a result, the model struggled to accurately differentiate all 8 clusters, leading to poor prediction performance.
+
+The confusion matrix in Table~\ref{tab:8_clu} indicates that the predictions tended to favor lower-numbered clusters, with high counts in clusters 1 and 7, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective clustering closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
+
+Additionally, it is evident from the confusion matrix that there is a concentration of correct predictions in the lower-numbered clusters, with predictions being more accurate in low-level clusters and less accurate for higher-numbered clusters. This implies that the model was able to identify some separation in the data, but the limited number of \(Y\) values hindered its ability to fully capture the complexity required for 8 distinct clusters.
+
+To address this issue, we increased the number of \(Y\) values to 100, providing significantly more information for the clustering task. 
+With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
+
+In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
+
+\begin{table}[htbp!]
+  \centering
+
+  % Title above all tables
+  % \caption*{\textbf{Confusion matrix of 8 Clusters with 20 Ys}}
+
+  \begin{minipage}{0.8\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+      \hline
+      \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
+                          & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+                          & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
+                          & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
+    \end{tabular}
+    \caption{Confusion matrix of 8 Clusters with 20 Ys}
+    \label{tab:8_clu}
+  \end{minipage}
+
+\end{table}
+
+\clearpage
+
+\subsubsection{Analysis of the Relationship Between the Number of Ys and Prediction Performance}
+
+Based on our findings in the \textit{fix the number of Ys} experiment, we observed a clear trend: as the number of clusters increases, prediction performance declines. Additionally, in the experiment described in Section 9.1.1, we found that increasing the number of Ys from 20 to 100 significantly improved prediction accuracy for data with five clusters.
+
+This section explores the relationship between the number of Ys and prediction performance through two structured sets of experiments:
+
+\begin{itemize}
+    \item \textbf{Three-Cluster Dataset}: Simulated using an OSM with three clusters.
+    \item \textbf{Five-Cluster Dataset}: Simulated using OSM with five clusters, providing a basis for comparison under more complex clustering conditions.
+\end{itemize}
+
+For each dataset, we tested configurations with 20, 30, and 50 Ys, while keeping all other parameters constant aside from the number of Ys and clusters.
+
+The results, illustrated in Figure 8, confirm our previous observations: the number of Ys has a more significant impact on accuracy as the number of clusters increases. This is reflected in the accuracy patterns observed across all experimental setups.
+
+The confusion matrix provides further insight. With only 20 Ys, the data inadequately represents three clusters, leading to less accurate predictions in this configuration. For the five-cluster setup, predictions with 20 Ys are mostly concentrated in clusters 2 and 4, indicating limited differentiation across clusters. As the number of Ys increases, we observe an improvement in prediction distribution: with 30 Ys, predictions are distributed across clusters 1, 3, and 5, and with 50 Ys, predictions are more evenly distributed across all five clusters. This highlights the positive effect of a higher number of Ys on clustering accuracy.
+
+These findings underscore the importance of adjusting the number of Ys based on the number of clusters and the complexity of the clustering structure. For practical applications, choosing an optimal number of Ys can improve prediction reliability, particularly in models where accurate clustering is essential. This relationship between Ys and prediction accuracy offers valuable guidance for designing future experiments and clustering tasks, especially in data with complex, high-cluster distributions.
 
 \begin{figure}[htbp!]
   \centering
@@ -940,51 +1000,6 @@ This finding is crucial for practical applications where the model's performance
     \end{tabular}
     \caption{5 Clusters with 50 Ys}
     \label{tab:5_clu_50}
-  \end{minipage}
-
-\end{table}
-
-
-
-\clearpage
-
-\subsubsection{Analysis of 8-Cluster Prediction Performance}
-
-The prediction accuracy for the 8-cluster experiment was notably low, as shown in the confusion matrix and the overall accuracy statistic (see Table~\ref{tab:8_clu}). This result can be attributed to the mismatch between the number of clusters and the amount of information available from the response variable \(Y\).
-
-In this experiment, we attempted to identify 8 distinct clusters using only 20 values of \(Y\). This setup presented a significant limitation: the small number of \(Y\) values did not provide sufficient information to effectively distinguish between a large number of clusters. As a result, the model struggled to accurately differentiate all 8 clusters, leading to poor prediction performance.
-
-The confusion matrix in Table~\ref{tab:8_clu} indicates that the predictions tended to favor lower-numbered clusters, with high counts in clusters 1 and 7, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective clustering closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
-
-Additionally, it is evident from the confusion matrix that there is a concentration of correct predictions in the lower-numbered clusters, with predictions being more accurate in low-level clusters and less accurate for higher-numbered clusters. This implies that the model was able to identify some separation in the data, but the limited number of \(Y\) values hindered its ability to fully capture the complexity required for 8 distinct clusters.
-
-To address this issue, we increased the number of \(Y\) values to 100, providing significantly more information for the clustering task. 
-With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
-
-In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
-
-\begin{table}[htbp!]
-  \centering
-
-  % Title above all tables
-  % \caption*{\textbf{Confusion matrix of 8 Clusters with 20 Ys}}
-
-  \begin{minipage}{0.8\textwidth}
-    \centering
-    \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
-      & \textbf{Reference} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
-      \hline
-      \textbf{Prediction} & \textbf{1} & 1410 & 1227 & 1077 & 850 & 328 & 153 & 71 & 31 \\
-                          & \textbf{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{4} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{5} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-                          & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
-                          & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
-    \end{tabular}
-    \caption{Confusion matrix of 8 Clusters with 20 Ys}
-    \label{tab:8_clu}
   \end{minipage}
 
 \end{table}
