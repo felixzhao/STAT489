@@ -836,11 +836,12 @@ This finding is crucial for practical applications where the model's performance
 
 \subsubsection{Analysis of 8-Cluster Prediction Performance}
 
+We also test the performance of 8 cluster prediciton.
 The prediction accuracy for the 8-cluster experiment was notably low, as shown in the confusion matrix and the overall accuracy statistic (see Table~\ref{tab:8_clu}). This result can be attributed to the mismatch between the number of clusters and the amount of information available from the response variable \(Y\).
 
 In this experiment, we attempted to identify 8 distinct clusters using only 20 values of \(Y\). This setup presented a significant limitation: the small number of \(Y\) values did not provide sufficient information to effectively distinguish between a large number of clusters. As a result, the model struggled to accurately differentiate all 8 clusters, leading to poor prediction performance.
 
-The confusion matrix in Table~\ref{tab:8_clu} indicates that the predictions tended to favor lower-numbered clusters, with high counts in clusters 1 and 7, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective clustering closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
+The confusion matrix in Table~\ref{tab:8_clu} indicates that the predictions tended to favor lower-numbered clusters, with high counts in clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective clustering closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
 
 Additionally, it is evident from the confusion matrix that there is a concentration of correct predictions in the lower-numbered clusters, with predictions being more accurate in low-level clusters and less accurate for higher-numbered clusters. This implies that the model was able to identify some separation in the data, but the limited number of \(Y\) values hindered its ability to fully capture the complexity required for 8 distinct clusters.
 
