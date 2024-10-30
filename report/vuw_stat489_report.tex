@@ -224,7 +224,7 @@ Suppose the data is partitioned into \(g\) clusters.
 
 The model for the probability of category \(k\) is then expressed as follows:
 \begin{equation}
-  \log\left(\frac{P(Y = k| X)}{P(Y = 1| X)} \mid k \in C, g \in G, i \in n, j \in m\right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + \bm{X}_i^T \cdot \bm{\delta} \right),
+  \log\left(\frac{P(Y_{ij} = k| X,i \in g)}{P(Y_{ij} = 1| X, i \in g)} \right) = \mu_k + \phi_k \times \left(\alpha_g + \beta_j + \bm{X}_i^T \cdot \bm{\delta} \right),
 \end{equation}
 where:
 
@@ -234,7 +234,7 @@ where:
     \item \(\beta_j\) represents the effect associated with column \(j\).
     \item \(X\) is a d dimensional set of covariates.
     \item \(\delta\) represents the effect associated with covariates.
-    \item \(X_i^T \cdot \delta\) represents the effect from the covariates associated with row \(i\), where \(\theta\) is a vector of coefficients.
+    \item \(X_i^T \cdot \delta\) represents the effect from the covariates associated with row \(i\), where \(\delta\) is a vector of coefficients.
 \end{itemize}
 
 A key feature of the Ordered Stereotype Model is the parameter \(\phi_k\), 
