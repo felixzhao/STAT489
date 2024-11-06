@@ -24,6 +24,8 @@
 
 \maketitle
 
+\textit{This project was a follow-on project from STAT487. Sections 1, 2, 4 and 5 are copied from the STAT487 report, and only section 4.1 has been updated for clarity. The remainder of the report is original work for this project.}
+
 % From VUW 487 Report
 \section{Introduction}
 
@@ -372,39 +374,44 @@ Then, the prediction of the cluster of row would be maximum $\hat{Z}_{ig}$ over 
 
 The model's accuracy is measured by how well the predicted clusters match the actual test data classifications.
 
-\section{Data Simulations to understanding the parameters}
+\section{Data Simulations to understand the parameters}
 
-In this section, we conduct experiments based on data generated from specified OSM parameters to analyze the effects of cluster and category distributions.
+In this section, we simulate data from specified OSM parameters to analyze the effects of changing parameter values.
 
 % \subsection{OSM (Ordered Stereotype Model) Simulation}
-We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameter $\alpha$. The default parameters used in the simulations are as follows:
+We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameters $\bm{\alpha}$. The default parameters used in the simulations are as follows:
 \[
 \begin{aligned}
 G &= 2, \\
 q &= 3, \\
-\alpha &= \mathbf{c}(1, -1), \\
-\beta &= \mathbf{c}(0), \\
-\mu &= \mathbf{c}(0, 0, 0), \\
-\phi &= \mathbf{c}(0, 0.5, 1), \\
-\pi &= \mathbf{c}(0.5, 0.5).
+\bm{\alpha} &= \mathbf{c}(1, -1), \\
+\bm{\beta} &= \mathbf{c}(0), \\
+\bm{\mu} &= \mathbf{c}(0, 0, 0), \\
+\bm{\phi} &= \mathbf{c}(0, 0.5, 1), \\
+\bm{\pi} &= \mathbf{c}(0.5, 0.5).
 \end{aligned}
 \]
-All parameters except for $\beta$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
+All parameters except for $\bm{\beta}$ are applied to a single outcome variable $Y$. This approach allows us to demonstrate the effects of adjusting a specific parameter on data density.
+
+The plots show the density function for each of the two clusters across the three possible categories.
 
 \subsection{Effect of Different $\alpha$ Values}
-In the OSM framework, $alpha$ is the argument of clusters. the sum of the $\alpha$ parameters is constrained to equal zero. 
+In the OSM framework, $\bm{\alpha}$ are the effects of clusters. the sum of the $\bm{\alpha}$ parameters is constrained to equal zero. 
 We examine the impact of varying the $\alpha$ values using the following configurations:
 \[
 \begin{aligned}
-\alpha_1 &= \mathbf{c}(-0.1, 0.1), \\
-\alpha_2 &= \mathbf{c}(-1, 1), \\
-\alpha_3 &= \mathbf{c}(-3, 3).
+\bm{\alpha}_1 &= \mathbf{c}(-0.1, 0.1), \\
+\bm{\alpha}_2 &= \mathbf{c}(-1, 1), \\ 
+\bm{\alpha}_3 &= \mathbf{c}(-3, 3).
 \end{aligned}
 \]
-We set cluster 1 has negitive $alpha$ value and cluster 2 has postive value.
+We set cluster 1 has negative $\bm{\alpha}$ value and cluster 2 has positive value.
 As shown in Figure~\ref{fig:alpha}, 
-the cluster has high $alpha$ value leading to have larger probability to have sample in high category.
-And cluster has lower $alpha$ value have larger probability to have sample in low category.
+the cluster that has high $\bm{\alpha}$ value has a larger probability of having samples in high categories.
+And the cluster that has lower $\bm{\alpha}$ value has a larger probability of having samples in low categories.
+
+Comparing the three plots, we observe that as the absolute value of $\bm{\alpha}$ increases, the separation between Cluster 1 and Cluster 2 becomes more pronounced. In the left plot with $\bm{\alpha} = \pm 0.1$ , the density distributions of both clusters are closely aligned, indicating limited separation. In the middle plot, with $\bm{\alpha} = \pm 1$, the separation increases, showing more distinct peaks for each cluster. Finally, in the right plot with $\bm{\alpha} = \pm 3$, the separation between the clusters is at its maximum, with very little overlap between Cluster 1 and Cluster 2. This trend illustrates that higher $\bm{\alpha}$ values amplify the distributional differences between clusters.
+
 
 \begin{figure}[htbp!]
   \centering
@@ -412,14 +419,14 @@ And cluster has lower $alpha$ value have larger probability to have sample in lo
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/alpha.png}
   \end{subfigure}
-  \caption{effect to cluster distribution from difference $\alpha$ value}
+  \caption{Effect on category distributions from different $\alpha$ values}
   \label{fig:alpha}
 \end{figure}
 
 % mu
 \subsection{Effect of Different $\mu$ Values}
-In OSM, $mu$ is argument of category. 
-The first value must be zero. There is no value limitation of $mu$, it can be large or negative.
+In OSM, $mu$ is a baseline parameter for the categories. 
+The first value is zero for identifiability. There is no value limitation of $mu$, the values can be large or negative.
 To investigate the impact of varying $\mu$ values on the cluster distributions, 
 we consider the following configurations:
 \[
@@ -430,9 +437,9 @@ we consider the following configurations:
 \end{aligned}
 \]
 Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value.
-It shows the category has high $mu$ value leading to high probability of sample.
-we also can see, $\mu_1$ and $\mu_3$ plots are showing left and right mirror. 
-and the $\mu_2$ is in the middle.
+It shows the category that has high $mu$ value has high probability of occurring.
+We also can see plots 1 and 2 are showing left and right mirror. 
+and plot 2 is in the middle.
 % ( TODO: This is related to defalut $phi$ value. 
 % Need to check the detial reason.)
 
@@ -450,11 +457,11 @@ and the $\mu_2$ is in the middle.
 
 % phi
 \subsection{Effect of Different $\phi$ Values}
-The parameter $\phi$ represents the ordinal effect for each category, reflecting the cumulative probability across ordered categories. 
-Importantly, the $\phi$ values must start from 0 and the $\phi$ value of the last category must be 1. 
+The parameters $\phi$ represent the ordinal effect for each category, influencing the distribution shape across ordered categories. Each category has a distinct $\phi$ value that modulates the density within that category, affecting the probability of observing certain sample values within clusters.
+Importantly, the $\phi$ values must start from 0 and the $\phi$ value of the last category must be 1. In the ordered stereotype model, the $\phi$ values must also follow a sequential order. 
 To evaluate the impact of different $\phi$ values, we consider the following configurations:
 \[
-\phi_1 = \mathbf{c}(0, 0.2, 1), \quad \phi_2 = \mathbf{c}(0, 0.5, 1), \quad \phi_3 = \mathbf{c}(0, 0.8, 1).
+\bm{\phi}^{(1)} = \mathbf{c}(0, 0.2, 1), \quad \bm{\phi}^{(2)} = \mathbf{c}(0, 0.5, 1), \quad \bm{\phi}^{(3)} = \mathbf{c}(0, 0.8, 1).
 \]
 As shown in Figure~\ref{fig:phi}, 
 when the probability associated with the second category increases (as $\phi$ values rise), 
@@ -474,14 +481,14 @@ with a more pronounced effect on the cluster associated with the higher $\phi$ v
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/phi.png}
   \end{subfigure}
-  \caption{effect to cluster distribution from difference $\phi$ value}
+  \caption{Effect on category distribution from different $\phi$ values}
   \label{fig:phi}
 \end{figure}
 
 % beta
-\subsection{different $\beta$ value}
-The parameter $\beta$ represents the effect of each column in the data. 
-Figure~\ref{fig:beta} illustrates three different sets of $\beta$ values across five columns. 
+\subsection{Effect of different $\beta$ values}
+The parameters $\beta$ represent the effects of each variable in the data. 
+Figure~\ref{fig:beta} illustrates three different sets of $\beta$ values across five variables. 
 When the $\beta$ values are close to zero, the impact on the data distribution is minimal. 
 In Figure~\ref{fig:beta} a, the sampling distributions are nearly identical to the scenario where $\beta = 0$, 
 indicating no significant effect from the columns. 
@@ -495,22 +502,22 @@ whereas positive $\beta$ values increase the likelihood of sampling from the hig
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_1.png}
-      \caption*{a. samll difference between $\beta$}
+      \caption*{a. small difference between $\beta$ values}
   \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_2.png}
-      \caption*{a. medim difference between $\beta$}
+      \caption*{a. medium difference between $\beta$ values}
     \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_3.png}
-      \caption*{a. large difference between $\beta$}
+      \caption*{a. large difference between $\beta$ values}
   \end{subfigure}
   
-  \caption{Effect to cluster distribution from different $\beta$ values}
+  \caption{Effect on category distribution from different $\beta$ values. The columns left to right show five different variables, one with each beta value.}
   \label{fig:beta}
 \end{figure}
 
@@ -518,38 +525,34 @@ whereas positive $\beta$ values increase the likelihood of sampling from the hig
 
 % pi
 \subsection{Effect of Different $\pi$ Values}
-In EM Algorithm, the $\pi$ parameter effects the sample size of each cluster. 
-In Figure~\ref{fig:pi} shows when $\pi$ value small leading to less sample size.
-when $\pi$ larger then the cluster has more sample size.
-When $\pi$ same then the overall sample size is close.
+In finite mixtures the $\pi$ parameters affect the sample size of each cluster. 
+In Figure~\ref{fig:pi} shows when one $\pi$ value is small it corresponds to a smaller sample size, and when one $\pi$ value is larger then the cluster has more sample size.
+When both $\pi$ values are the same then the overall sample sizes are similar.
 \begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/pi.png}
   \end{subfigure}
-  \caption{effect to cluster distribution from difference $\pi$ value}
+  \caption{Effect on data distribution from difference $\pi$ values}
   \label{fig:pi}
 \end{figure}
 
 % Normal Dist Simu Section
-\section{Ordinal Data Simulations by Normal Distributions}
+\section{Ordinal Data Simulations via Normal Distributions}
 
-In order to better simulate the actual situation.
-In this work, we introduced another approach to simulation the ordinal data 
+In order to simulate alternative situations
+ we introduced another approach to simulate the ordinal data 
 for our prediction experiments. 
-This approach is based on assume the data in each cluster are following 
-a known distribution with known parameter of that distribution.
-And the value of each categories are selected by cuts which same to each clusters.
+This approach is based on assuming the data in each cluster are based on latent variables with normal distribution.
+And the value of each categories are selected by cut points. The cut points are the same for all clusters.
 
-In Cluster distributions, our work is based on two clusters and three categories.
+Most of our examples are based on two clusters and three categories. We use 3 different cluster distributions settings.
 
-There are 3 difference cluster distributions settings, which shown in 
-
-Figure~\ref*{fig:dist_sim} (a) clusters follow different distribution with closer means $N(0,6)$ and $N(3,8)$
+Figure~\ref*{fig:dist_sim} (a) clusters follow different distribution with close means $N(0,6)$ and $N(3,8)$
 with same two cuts at $0$ and $2.5$,
 
-Figure~\ref*{fig:dist_sim} (b) clusters follow different distribution with medium means $N(-1,1)$ and $N(-1.5,2)$
+Figure~\ref*{fig:dist_sim} (b) clusters fo llow different distribution with medium distance means $N(-1,1)$ and $N(1.5,2)$
 with same two cuts at $-1$ and $1$,
 
 Figure~\ref*{fig:dist_sim} (c) clusters follow different distribution with far means $N(0,1)$ and $N(4,2)$
@@ -559,19 +562,19 @@ with same two cuts at $1$ and $2.5$,
   \centering
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
-    \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_close.png} 
+    \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_close.png} % Replace with your second image path
     \caption{Clusters follow different distribution with close centre\\ cut1=0, cut2=2.5}
 \end{subfigure}
   \hfill
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
     \centering
-    \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_medium.png} 
+    \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_medium.png} % Replace with your first image path
     \caption{Clusters follow different distribution with medium distance centre\\ cut1=-1, cut2=1}
 \end{subfigure}
   \hfill
   \begin{subfigure}{0.32\textwidth}  % Adjust width to 0.32 to fit three images in a row
       \centering
-      \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_far.png} 
+      \includegraphics[width=\textwidth]{images/dist_simu/norm_dist_far.png} % Replace with your third image path
       \caption{Clusters follow different distribution with far centre\\ cut1=1, cut2=2.5}
   \end{subfigure}
   
@@ -580,30 +583,30 @@ with same two cuts at $1$ and $2.5$,
 \end{figure}
 
 
-\section{Experiments approach}
+\section{Experiment Methods}
 
 In this study, we divided the simulated data into training and validation sets.
 
-First, We use clustord R packagae \cite{clustord2024} to fit the parameters by the Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data, using only the response variable $Y$.
+First, We use the clustord R package (\cite{clustord2024}) to fit the parameters. The Expectation-Maximization (EM) algorithm was applied to estimate the parameter values from the training data using the response variables $\bm{Y}$.
 
-Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, column and row combination for each new observation in the validation set.
+Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calculate the probability of each category, cluster, column and row combination for each new observation in the validation set based on the estimated parameters.
 
-Finally, for each new observation $Y'$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities.
+Finally, for each new observation $\bm{Y}_i$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities and assigned the observation to the cluster with the highest Z-score.
 
-Additionally, the defalut parameter given by EM algorithm have label switching problem.
-The label switching is the cluster parameter $\alpha$ not in a correct order, which leading the prediciton logic given wrong prediction.
+Additionally, the default parameters given by EM algorithm have label switching problem.
+The label switching is the cluster parameter estimates $\alpha$ may be in a different order to the simulated clusters, which can make the predictions look more inaccurate than they actually are.
 
-In this work we reordering the fitted clusters in order of decreasing $\alpha$ then do predictions based on the reordered clusters.
+In this work we reorder the fitted clusters in order of decreasing $\alpha$ then do predictions based on the reordered clusters.
 
 \begin{algorithm}
   \caption{Pseudocode for Calculating Cluster Probabilities}
   \label{fig:algo}
   \begin{algorithmic}[1]
-  \STATE Initialize a 4D array \texttt{cluster\_probs} with dimensions $G \times \texttt{number\_of\_row} \times \texttt{number\_of\_y} \times q$ and all elements set to 0.
+  \STATE Initialize a 4D array \texttt{cluster\_probs} with dimensions $G \times \texttt{number\_of\_row} \times \texttt{number\_of\_columns} \times q$ and all elements set to 0.
   
   \FOR{$g = 1$ to $G$}
       \FOR{$i = 1$ to \texttt{number\_of\_row}}
-          \FOR{$j = 1$ to \texttt{number\_of\_y}}
+          \FOR{$j = 1$ to \texttt{number\_of\_columns}}
               \FOR{$k = 1$ to $q$}
                   \IF{$k > 1$}
                       \STATE Calculate $\texttt{linear} \gets \mu[k] + \phi[k] \times (\alpha[g] + \beta[j] + \sum \delta \times X[i,])$
@@ -652,14 +655,14 @@ This is particularly critical for ordinal data, where maintaining the natural or
 
 \section{Experiment Results}
 
-These experiments were designed to assess the suitability of the Ordered Stereotype Model (OSM) for predicting clusters within ordinal data, specifically exploring its potential application within a Finite Factor Mixture Model (FFM) framework. In the OSM simulations, we examined the model’s predictive capability across a range of parameter configurations, including variations in the number of response variables and clusters. This setup allowed us to systematically observe how the model's accuracy responds to changes in data volume and clustering complexity, providing insights into its robustness in distinguishing clusters within ordinal datasets.
+These experiments were designed to assess the suitability of the Ordered Stereotype Model (OSM) for predicting clusters within ordinal data, specifically exploring its potential application within a Finite Mixture Model (FMM) framework. In the OSM simulations, we examine the model’s predictive capability across a range of parameter configurations, including variations in the number of response variables and clusters. This setup allowed us to systematically observe how prediction accuracy responds to changes in data volume and clustering complexity, providing insights into its robustness in distinguishing clusters within ordinal datasets.
 
-Conversely, the Normal Distribution simulations aimed to evaluate the model’s performance under conditions that more closely mirror real-world scenarios, where data often follows a particular distribution. By simulating data with Normal distributions, we analyzed the model’s effectiveness in classifying observations based on typical distributional structures, offering a complementary perspective on its clustering performance in structured data environments.
+Conversely, the Normal Distribution simulations aimed to evaluate the model’s performance under more challenging conditions where the data are not generated from the same distribution as the model fitting. By simulating data with Normal distributions, we analyzed the model’s effectiveness in classifying observations based on typical distributional structures, offering a complementary perspective on its clustering performance in structured data environments.
 
-Finally, we compared the outcomes of the OSM and Normal Distribution simulations to assess the model’s consistency and adaptability across different simulation types. This comparison offers a comprehensive understanding of the model’s strengths and limitations in handling diverse data distributions and clustering complexities, thereby clarifying its practical utility for clustering ordinal data in FFM applications.
+Finally, we compared the outcomes of the OSM and Normal Distribution simulations to assess the model’s consistency and adaptability across different simulation types. This comparison offers a comprehensive understanding of the model’s strengths and limitations in handling diverse data distributions and clustering complexities, thereby clarifying its practical utility for clustering ordinal data in FMM applications.
 \subsection{Prediction with OSM simulate}
 
-\subsubsection*{Prediction with Different Numbers of \( Y \) Values}
+\subsubsection*{Prediction with Different Numbers of \( Y \) Variables}
 
 This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). The parameters used in this experiment are as follows:
 
@@ -674,39 +677,39 @@ q &= 3, \\
 \end{aligned}
 \]
 
-Additionally, the covariate effect, \(\beta\), was generated from a uniform distribution over the interval \([-1, 1]\):
+Additionally, the effects of the columns, \(\bm{\beta}\), were generated from a uniform distribution over the interval \([-1, 1]\):
 
 \[
-\beta \sim \mathcal{U}(-1, 1)
+\beta_j \sim \mathcal{U}(-1, 1)
 \]
 
 For the 20 \( Y \) experiment, we generated 20 values of \(\beta\), while for the 30 and 50 \( Y \) experiments, 30 and 50 values of \(\beta\) were generated, respectively. 
-The confusion matrices for these experiments are shown in Tables~\ref{tab:20_ys}, \ref{tab:30_ys}, and \ref{tab:50_ys}, demonstrating the model's clustering prediction results for different numbers of response variables.
+The confusion matrices for the predictions in these experiments are shown in Tables~\ref{tab:20_ys}, \ref{tab:30_ys}, and \ref{tab:50_ys}, demonstrating the model's clustering prediction results for different numbers of response variables.
 
 From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( Y \) values increases, the prediction accuracy also improves. 
-This improvement suggests that a larger number of response variables provides more information for distinguishing between clusters, leading to better model performance. 
+This improvement suggests that a larger number of response variables provide more information for distinguishing between clusters, leading to better model performance. 
 Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more covariate data enhances the clustering capability of the model.
 
 \subsubsection*{Prediction with Different Numbers of Clusters}
 
-In the second set of experiments, we investigated the impact of varying the number of clusters while keeping other parameters constant. 
-The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. 
-The EM algorithm was configured with the following parameters: EM cycles = 100, start EM cycles = 5, and nstarts = 5.
+In the second set of experiments, we investigated the impact of varying the number of clusters while keeping most of the parameters constant. 
+The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. The \(beta\) values were again generated uniformly between -1 and 1. 
+\texttt{clustord} was configured with the following parameters: \texttt{EMcycles} = 100, \texttt{startEMcycles} = 5, and \texttt{nstarts} = 5.
 
 For the three-cluster experiment, the values of \(\alpha\) were set to \(-1, 0, 1\), and the cluster proportions (\(\pi\)) were set to 0.33, 0.34, and 0.33, respectively. 
 In the five-cluster experiment, \(\alpha\) values were set to \(-1, -0.5, 0, 0.5, 1\), with equal cluster proportions of 0.2 for each cluster. 
-The confusion matrices for the different cluster configurations are presented in Tables~\ref{tab:2_clu}, \ref{tab:3_clu}, and \ref{tab:5_clu}.
+The confusion matrices for the prediction results of different cluster configurations are presented in Tables~\ref{tab:2_clu}, \ref{tab:3_clu}, and \ref{tab:5_clu}.
 
 Figure~\ref{fig:exp_res}(b) illustrates the overall prediction accuracy for different numbers of clusters. 
 It is evident that as the number of clusters increases, the prediction accuracy decreases significantly. 
 The model achieved an accuracy of 0.96 for 2 clusters, while the accuracy dropped to 0.2461 for 5 clusters. 
 This rapid decline in accuracy can be attributed to the increased complexity introduced by a larger number of clusters, which requires more information to accurately distinguish between them. 
-With only 20 \( Y \) values, the information available was insufficient to clearly differentiate among 5 clusters, leading to decreased performance.
+With only 20 \( Y \) variables, the information available was insufficient to clearly differentiate among 5 clusters, leading to decreased performance.
 
 \subsubsection*{Summary and Observations}
 
-Overall, the experiments demonstrate that the number of response variables (\( Y \)) and the number of clusters (\( G \)) have a significant impact on the clustering performance of the Ordered Stereotype Model. 
-Increasing the number of \( Y \) values provides more information to the model, resulting in improved clustering accuracy. 
+Overall, the experiments demonstrate that the number of response variables and the number of clusters (\( G \)) have a significant impact on the clustering performance of the Ordered Stereotype Model. 
+Increasing the number of \( Y \) variables provides more information to the model, resulting in improved clustering accuracy. 
 However, as the number of clusters increases, the complexity of the clustering task also increases, and the model requires a larger amount of information to maintain high accuracy.
 
 The results highlight the importance of appropriately selecting the number of response variables and clusters to ensure the model performs effectively. 
@@ -718,13 +721,13 @@ This finding is crucial for practical applications where the model's performance
   \begin{subfigure}{0.49\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/experiments/dif_ys.png}
-      \caption{Prediction Accuracy of 2 clusters with different number of Ys}
+      \caption{Prediction Accuracy for 2 clusters with different number of columns}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.49\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/experiments/exp_diff_clusters.png} % Replace with your second image path
-      \caption{Prediction Accuracy of different number of Clusters with 20 Ys}
+      \caption{Prediction Accuracy for different numbers of Clusters with 20 columns}
   \end{subfigure}
   \caption{Cluster Prediction Experiments Results}
   \label{fig:exp_res}
@@ -734,7 +737,7 @@ This finding is crucial for practical applications where the model's performance
   \centering
 
   % Title above all tables
-  \caption*{\textbf{Confusion matrix of 2 clusters different number of Ys}}
+  \caption*{\textbf{Confusion matrices for 2 clusters different number of columns}}
 
   % First row of tables (2 side by side)
   \begin{minipage}{0.45\textwidth}
@@ -784,7 +787,7 @@ This finding is crucial for practical applications where the model's performance
   \centering
 
   % Title above all tables
-  \caption*{\textbf{Confusion matrix of different number of Clusters with 20 Ys}}
+  \caption*{\textbf{Confusion matrices for different numbers of Clusters with 20 columns}}
 
   % First row of tables (2 side by side)
   \begin{minipage}{0.45\textwidth}
@@ -836,16 +839,16 @@ This finding is crucial for practical applications where the model's performance
 
 \subsubsection{Analysis of 8-Cluster Prediction Performance}
 
-We also test the performance of 8 cluster prediciton.
+We also test the performance of 8 cluster prediction.
 The prediction accuracy for the 8-cluster experiment was notably low, as shown in the confusion matrix and the overall accuracy statistic (see Table~\ref{tab:8_clu}). This result can be attributed to the mismatch between the number of clusters and the amount of information available from the response variable \(Y\).
 
 In this experiment, we attempted to identify 8 distinct clusters using only 20 values of \(Y\). This setup presented a significant limitation: the small number of \(Y\) values did not provide sufficient information to effectively distinguish between a large number of clusters. As a result, the model struggled to accurately differentiate all 8 clusters, leading to poor prediction performance.
 
-The confusion matrix in Table~\ref{tab:8_clu} indicates that the predictions tended to favor lower-numbered clusters, with high counts in clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective clustering closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
+The confusion matrix in Table~\ref{tab:8_clu} indicates that the fitted model tended to favor a lower number of clusters, with high counts in clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective number of clusters closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
 
 Additionally, it is evident from the confusion matrix that there is a concentration of correct predictions in the lower-numbered clusters, with predictions being more accurate in low-level clusters and less accurate for higher-numbered clusters. This implies that the model was able to identify some separation in the data, but the limited number of \(Y\) values hindered its ability to fully capture the complexity required for 8 distinct clusters.
 
-To address this issue, we increased the number of \(Y\) values to 100, providing significantly more information for the clustering task. 
+To address this issue, we increased the number of \(Y\) variables to 100, providing significantly more information for the clustering task. 
 With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
 
 In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
@@ -870,7 +873,7 @@ In summary, the poor performance in the 8-cluster scenario was due to insufficie
                           & \textbf{7} & 100 & 208 & 404 & 668 & 898 & 848 & 664 & 506 \\
                           & \textbf{8} & 2 & 4 & 19 & 59 & 265 & 482 & 751 & 975 \\
     \end{tabular}
-    \caption{Confusion matrix of 8 Clusters with 20 Ys}
+    \caption{Confusion matrix for 8 Clusters with 20 columns}
     \label{tab:8_clu}
   \end{minipage}
 
@@ -878,24 +881,24 @@ In summary, the poor performance in the 8-cluster scenario was due to insufficie
 
 \clearpage
 
-\subsubsection{Analysis of the Relationship Between the Number of Ys and Prediction Performance}
+\subsubsection{Analysis of the Relationship Between the Number of Columns and Prediction Performance}
 
-Based on our findings in the \textit{fix the number of Ys} experiment, we observed a clear trend: as the number of clusters increases, prediction performance declines. Additionally, in the experiment described in Section 9.1.1, we found that increasing the number of Ys from 20 to 100 significantly improved prediction accuracy for data with five clusters.
+Based on our findings in the \textit{fix the number of columns} experiment, we observed a clear trend: as the number of clusters increases for a fixed number of columns, prediction performance declines. Additionally, in the experiment described in Section 9.1.1, we found that increasing the number of columns from 20 to 100 significantly improved prediction accuracy for data with five clusters.
 
-This section explores the relationship between the number of Ys and prediction performance through two structured sets of experiments:
+This section explores the relationship between the number of columns and prediction performance through two structured sets of experiments:
 
 \begin{itemize}
-    \item \textbf{Three-Cluster Dataset}: Simulated using an OSM with three clusters.
-    \item \textbf{Five-Cluster Dataset}: Simulated using OSM with five clusters, providing a basis for comparison under more complex clustering conditions.
+    \item \textbf{Three-Cluster Datasets}: Simulated using an OSM with three clusters.
+    \item \textbf{Five-Cluster Datasets}: Simulated using OSM with five clusters, providing a basis for comparison under more complex clustering conditions than the three-cluster datasets.
 \end{itemize}
 
 For each dataset, we tested configurations with 20, 30, and 50 Ys, while keeping all other parameters constant aside from the number of Ys and clusters.
 
-The results, illustrated in Figure 8, confirm our previous observations: the number of Ys has a more significant impact on accuracy as the number of clusters increases. This is reflected in the accuracy patterns observed across all experimental setups.
+The results, illustrated in Figure 8, confirm our previous observations: the number of variables has a more significant impact on accuracy as the number of clusters increases. This is reflected in the accuracy patterns observed across all experimental setups.
 
-The confusion matrix provides further insight. With only 20 Ys, the data inadequately represents three clusters, leading to less accurate predictions in this configuration. For the five-cluster setup, predictions with 20 Ys are mostly concentrated in clusters 2 and 4, indicating limited differentiation across clusters. As the number of Ys increases, we observe an improvement in prediction distribution: with 30 Ys, predictions are distributed across clusters 1, 3, and 5, and with 50 Ys, predictions are more evenly distributed across all five clusters. This highlights the positive effect of a higher number of Ys on clustering accuracy.
+The confusion matrix provides further insight. With only 20 variables, the data inadequately represents three clusters, leading to less accurate predictions in this configuration. For the five-cluster setup, predictions with 20 variables are mostly concentrated in clusters 2 and 4, indicating limited differentiation across clusters. As the number of variables increases, we observe an improvement in prediction distribution: with 30 variables, predictions are distributed across clusters 1, 3, and 5, and with 50 variables, predictions are more evenly distributed across all five clusters. This highlights the positive effect of a higher number of variables on clustering accuracy.
 
-These findings underscore the importance of adjusting the number of Ys based on the number of clusters and the complexity of the clustering structure. For practical applications, choosing an optimal number of Ys can improve prediction reliability, particularly in models where accurate clustering is essential. This relationship between Ys and prediction accuracy offers valuable guidance for designing future experiments and clustering tasks, especially in data with complex, high-cluster distributions.
+These findings underscore the importance of adjusting the number of variables based on the number of clusters and the complexity of the clustering structure. For practical applications, obtaining sufficient variables can improve prediction reliability, particularly in models where accurate clustering is essential. This relationship between variables and prediction accuracy offers valuable guidance for designing future experiments and clustering tasks, especially in data which potentially have a higher number of clusters.
 
 \begin{figure}[htbp!]
   \centering
@@ -903,14 +906,14 @@ These findings underscore the importance of adjusting the number of Ys based on 
       \centering
       \includegraphics[width=\textwidth]{images/experiments/3_vs_5_clusters}
   \end{subfigure}
-  \caption{Prediction Accuracy Bar plot for difference Ys for 3 clusters vs 5 clusters}
+  \caption{Prediction Accuracy plot for different numbers of variables for 3 clusters and for 5 clusters}
   \label{fig:3vs5}
 \end{figure}
 
 \begin{table}[htbp!]
   \centering
   % Title above all tables
-  \caption*{\textbf{Confusion matrix of different number of Clusters with various Ys}}
+  \caption*{\textbf{Confusion matrices for different numbers of Clusters and different numbers of variables}}
 
   \begin{minipage}{0.45\textwidth}
     \centering
@@ -1010,15 +1013,15 @@ These findings underscore the importance of adjusting the number of Ys based on 
 
 In this set of experiments, we evaluated the clustering performance of the Ordered Stereotype Model (OSM) using different Normal distribution simulations. 
 The experiments were conducted exclusively for two clusters, incorporating column effects to understand how the model performs under varying conditions. 
-The EM algorithm was applied consistently across all experiments, with the number of EM cycles set to 100, the start EM cycles set to 5, and the number of starts (\textit{nstarts}) set to 5.
+The EM algorithm was applied consistently across all experiments, with the number of EM cycles set to 100, the start EM cycles set to 5, and the number of starts (\texttt{nstarts}) set to 5.
 
-Figure~\ref{fig:dist_acc} presents the prediction accuracy for three distinct scenarios: "Close center," "Far center," and "Different distributions with the same cuts." 
-The model's performance in all scenarios was highly effective, achieving accuracy values close to or equal to 1. Specifically, the prediction accuracy for the "Close center" scenario reached 0.99, while the accuracy for both the "Far center" and "Different distributions with the same cuts" scenarios was 1. 
+Figure~\ref{fig:dist_acc} presents the prediction accuracy for three distinct scenarios: "Close center," "Far center," and "Medium separated center." 
+The model's performance in all scenarios was highly effective, achieving accuracy values close to or equal to 1. Specifically, the prediction accuracy for the "Close center" scenario reached 0.99, while the accuracy for both the "Far center" and "Medium separated center" scenarios was 1. 
 These results indicate the robustness of the model under various Normal distribution configurations.
 
 The confusion matrices for these experiments are provided in Tables~\ref{tab:nor_close}, \ref{tab:nor_far}, and \ref{tab:nor_cuts}, which provide a more detailed view of the model's classification results. 
 For the "Close center" scenario (Table~\ref{tab:nor_close}), there were only 3 instances misclassified out of 300 total samples, highlighting the model's ability to distinguish between clusters even when their centers are relatively close. 
-In contrast, for both the "Far center" (Table~\ref{tab:nor_far}) and "Different distributions with the same cuts" (Table~\ref{tab:nor_cuts}) scenarios, no misclassifications were observed, resulting in perfect accuracy for these experiments.
+In contrast, for both the "Far center" (Table~\ref{tab:nor_far}) and "Medium separated center" (Table~\ref{tab:nor_cuts}) scenarios, no misclassifications were observed, resulting in perfect accuracy for these experiments.
 
 \subsubsection*{Analysis and Insights}
 
@@ -1029,7 +1032,7 @@ Despite this, the misclassification rate remains extremely low, demonstrating th
 
 For the "Far center" scenario, the cluster centers were further apart, which led to perfect classification accuracy. 
 This indicates that the separation between clusters plays a crucial role in determining the model's performance, with greater distances leading to more distinct cluster assignments. 
-Similarly, the "Different distributions with the same cuts" scenario also resulted in perfect accuracy, suggesting that the choice of cuts does not significantly impact performance when the underlying cluster centers are adequately separated.
+Similarly, the "Medium separated center" scenario also resulted in perfect accuracy, suggesting that the choice of cuts does not significantly impact performance when the underlying cluster centers are adequately separated.
 
 \subsubsection*{Summary}
 
@@ -1041,7 +1044,7 @@ These insights provide confidence in the consistency of the OSM approach for clu
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/experiments/norm_dist.png}
-  \caption{Prediction Accuracy for Normal with different parameter and cuts}
+  \caption{Prediction Accuracy for Normal distribution simulations of two clusters with different parameter and cuts}
   \label{fig:dist_acc}
 \end{figure}
 
@@ -1050,7 +1053,7 @@ These insights provide confidence in the consistency of the OSM approach for clu
   \centering
 
   % Title above all tables
-  \caption*{\textbf{Confusion matrix of Normal Distributions}}
+  \caption*{\textbf{Confusion matrices of Normal Distributions with two clusters}}
 
   \begin{minipage}{0.45\textwidth}
     \centering
@@ -1106,12 +1109,12 @@ These insights provide confidence in the consistency of the OSM approach for clu
 
 \subsection{Compare prediction results between OSM simulation with Noraml simulation}
 
-In this section, we based on 5 clusters prediciton result to compare the prediciton result performance between OSM simulation with Normal simulation.
+In this section, we based on 5 clusters prediction result to compare the prediction result performance between OSM simulation with Normal simulation.
 both of these two experiments are based on 2500 observations for each cluster, which is 7500 simulation observations in total. 
 
-The Normal Distribution simulation with 100 Ys and following distributions metioned in Figure \ref{fig:dist_5_clus}.
+The Normal Distribution simulation with 100 columns and following distributions mentioned in Figure \ref{fig:dist_5_clus}.
 
-The OSM simulation with 100 Ys, 3 categories and $\beta$ generated from uniform Distribution. The rest parameters are following
+The OSM simulation with 100 columns, 3 categories and $\beta$ generated from uniform Distribution. The rest parameters are following
 
 The difference in accuracy between the two tables (0.9419 vs. 1.0) highlights that the model performs more consistently with the Normal Distribution simulation, achieving flawless accuracy. 
 In contrast, the OSM simulation shows slight variability, indicating that the model may encounter some challenges when the data distribution is more complex or varied, as represented in the OSM setup.
@@ -1129,7 +1132,7 @@ In contrast, the OSM simulation shows slight variability, indicating that the mo
   \centering
 
   % Title above all tables
-  \caption*{\textbf{Confusion Matrix of Different Number of Clusters with 100 Ys}}
+  \caption*{\textbf{Confusion Matrices of Different Numbers of Clusters with 100 columns}}
 
   \begin{minipage}{\textwidth}
     \centering
@@ -1142,7 +1145,7 @@ In contrast, the OSM simulation shows slight variability, indicating that the mo
                           & \textbf{4} & 0 & 0 & 19 & 682 & 36 \\
                           & \textbf{5} & 0 & 0 & 0 & 26 & 695 \\
     \end{tabular}
-    \caption{5 Clusters Prediction with 100 Ys OSM simulation}
+    \caption{5 Clusters Predictions with 100 columns simulated via OSM}
     \label{tab:5_clu_100_ys}
   \end{minipage}
   \vspace{1cm} % Add some space between the two tables
@@ -1158,7 +1161,7 @@ In contrast, the OSM simulation shows slight variability, indicating that the mo
                           & \textbf{4} & 0 & 0 & 0 & 737 & 0 \\
                           & \textbf{5} & 0 & 0 & 0 & 0 & 721 \\
     \end{tabular}
-    \caption{5 Clusters Prediction with 100 Ys Normal Distribution simulation}
+    \caption{5 Clusters Predictions with 100 columns simulated via Normal Distribution}
     \label{tab:5_clu_norm_dist}
   \end{minipage}
 
@@ -1177,7 +1180,7 @@ The standard deviation of the accuracy across replicates serves as an indicator 
 
 Our results showed that the standard deviation of accuracy across the replicated experiments was 
 0.0083
-, indicates that the model’s performance is highly consistent across different initializations.
+, indicating that the model’s performance is highly consistent across different initializations.
 
 The low standard deviation demonstrates that the model’s accuracy remains relatively stable, suggesting
 that the training process and resulting predictions are not overly sensitive to the random initialization. 
@@ -1191,7 +1194,7 @@ model produces stable predictions irrespective of the variability introduced by 
 
 In this paper, we extended the clustering methodology for ordinal data using the Ordered Stereotype Model (OSM) within the framework of Finite Mixture Models (FMM). We focused on enabling the prediction of cluster membership for new, unlabeled data. This extension is crucial for applying ordinal data analysis in dynamic environments where new data is continuously generated, requiring efficient and accurate classification. Our approach involved constructing a prediction function that, after model parameter estimation, allows for direct cluster assignment of new observations, supported by both OSM simulations and Normal distribution-based simulations.
 
-We conducted experiments that systematically varied parameters such as the number of response variables (\( Y \)) and the number of clusters (\( G \)), as well as different configurations of the OSM model parameters (\(\alpha\), \(\mu\), \(\phi\), \(\beta\), and \(\pi\)). Our results demonstrated that the model's clustering performance improves with an increased number of response variables and that prediction accuracy decreases significantly as the number of clusters increases, emphasizing the importance of balancing model complexity with available information. The experiments with Normal distribution-based simulations further validated the robustness of our approach, with near-perfect accuracy across different cluster scenarios.
+We conducted experiments that systematically varied parameters such as the number of response variables and the number of clusters (\( G \)), as well as different configurations of the OSM model parameters (\(\alpha\), \(\mu\), \(\phi\), \(\beta\), and \(\pi\)). Our results demonstrated that the model's clustering performance improves with an increased number of response variables and that prediction accuracy decreases significantly as the number of clusters increases, emphasizing the importance of balancing model complexity with available information. The experiments with Normal distribution-based simulations further validated the robustness of our approach, with near-perfect accuracy across different cluster scenarios.
 
 We also addressed the issue of label switching, a common challenge in clustering algorithms that employ the Expectation-Maximization (EM) approach. By implementing a reordering step to consistently align cluster labels based on the estimated probabilities of the latent variable \(\alpha\), we were able to mitigate the label switching problem, ensuring reliable evaluation of model predictions across multiple runs.
 
@@ -1206,17 +1209,15 @@ While the results presented in this paper show promising advancements in cluster
 
     \item \textbf{Expanding to Higher-Dimensional Data}: The current work focused on scenarios involving two to five clusters. Expanding the methodology to handle more complex, higher-dimensional data with a larger number of clusters could provide valuable insights into its scalability and efficiency. Additional research is needed to explore strategies for improving accuracy when predicting a greater number of clusters, particularly when available data is limited.
 
-    \item \textbf{Alternative Model Structures for Ordinal Data}: Investigating alternative model structures, such as Bayesian approaches or hierarchical mixture models, may further improve clustering performance for ordinal data. These methods could provide additional flexibility in modeling the dependencies between response variables, thus enhancing predictive capabilities.
-
     \item \textbf{Real-World Data Validation}: Although our simulations demonstrated the robustness and effectiveness of the proposed model, future research should involve validating the model on real-world ordinal datasets from various domains, such as social sciences, healthcare, or market research. This step is critical to assess the practical utility of the model and ensure its generalizability beyond the controlled environment of simulated data.
 
-    \item \textbf{Exploring the Impact of Covariates}: While this study considered the effect of covariates in the clustering process, future work could explore the impact of additional covariates and more complex interactions between covariates and clusters. Understanding these effects could provide deeper insights into how different factors contribute to the clustering structure, thereby improving the model's interpretability and application.
+    \item \textbf{Exploring the Impact of Covariates}: Although this study did not examine the effect of covariates in the clustering process, future work could explore the impact of additional covariates and complex interactions between covariates and clusters. Investigating these effects could provide deeper insights into how various factors contribute to the clustering structure, potentially enhancing the model's interpretability and application.
 
     \item \textbf{Enhanced Handling of Label Switching}: Although our deterministic relabeling strategy effectively mitigated label switching, further work is needed to develop more sophisticated techniques that can handle label switching in a wider variety of clustering contexts. This is especially important for large-scale clustering applications involving many clusters.
 
 \end{itemize}
 
-In conclusion, this work contributes to the existing body of literature on ordinal data analysis by extending the FMM framework to incorporate predictive clustering capabilities, supported by rigorous experimentation and analysis. The proposed methodology provides a solid foundation for future studies and opens up new avenues for effectively utilizing clustering in dynamic environments with ordinal data. We are confident that the insights gained from this research will serve as a stepping stone for further developments in the area of ordinal data clustering and prediction.
+In conclusion, this work contributes to the existing body of literature on ordinal data analysis by extending the FMM framework in the \texttt{clustord} package to incorporate predictive clustering capabilities, supported by rigorous experimentation and analysis. The proposed methodology provides a solid foundation for future studies and opens up new avenues for effectively utilizing clustering in dynamic environments with ordinal data. We are confident that the insights gained from this research will serve as a stepping stone for further developments in the area of ordinal data clustering and prediction.
 
 
 \printbibliography
