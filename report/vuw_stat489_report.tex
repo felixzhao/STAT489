@@ -379,7 +379,7 @@ The model's accuracy is measured by how well the predicted clusters match the ac
 In this section, we simulate data from specified OSM parameters to analyze the effects of changing parameter values.
 
 % \subsection{OSM (Ordered Stereotype Model) Simulation}
-We systematically vary individual model parameters while holding others constant to observe their influence on data density, particularly focusing on the parameters $\bm{\alpha}$. The default parameters used in the simulations are as follows:
+We systematically vary individual model parameters while holding others constant to observe their influence on data density. The default parameters used in the simulations are as follows:
 \[
 \begin{aligned}
 G &= 2, \\
@@ -395,7 +395,7 @@ All parameters except for $\bm{\beta}$ are applied to a single outcome variable 
 
 The plots show the density function for each of the two clusters across the three possible categories.
 
-\subsection{Effect of Different $\alpha$ Values}
+\subsection{Effect of Different $\bm{\alpha}$ Values}
 In the OSM framework, $\bm{\alpha}$ are the effects of clusters. the sum of the $\bm{\alpha}$ parameters is constrained to equal zero. 
 We examine the impact of varying the $\alpha$ values using the following configurations:
 \[
@@ -424,21 +424,21 @@ Comparing the three plots, we observe that as the absolute value of $\bm{\alpha}
 \end{figure}
 
 % mu
-\subsection{Effect of Different $\mu$ Values}
-In OSM, $mu$ is a baseline parameter for the categories. 
-The first value is zero for identifiability. There is no value limitation of $mu$, the values can be large or negative.
-To investigate the impact of varying $\mu$ values on the cluster distributions, 
+\subsection{Effect of Different $\bm{\mu}$ Values}
+In OSM, $\bm{\mu}$ is a baseline parameter for the categories. 
+The first value is zero for identifiability. There is no value limitation of $\bm{\mu}$, the values can be large or negative.
+To investigate the impact of varying $\bm{\mu}$ values on the cluster distributions, 
 we consider the following configurations:
 \[
 \begin{aligned}
-\mu_1 &= \mathbf{c}(0, -1, -2), \\
-\mu_2 &= \mathbf{c}(0, 2, 1), \\
-\mu_3 &= \mathbf{c}(0, 1, 2).
+  \bm{\mu}_1 &= \mathbf{c}(0, -1, -2), \\
+  \bm{\mu}_2 &= \mathbf{c}(0, 2, 1), \\
+  \bm{\mu}_3 &= \mathbf{c}(0, 1, 2).
 \end{aligned}
 \]
-Figure~\ref{fig:mu} illustrates the effects of different $\mu$ value.
-It shows the category that has high $mu$ value has high probability of occurring.
-We also can see plots 1 and 2 are showing left and right mirror. 
+Figure~\ref{fig:mu} illustrates the effects of different $\bm{\mu}$ value.
+It shows the category that has high $\bm{\mu}$ value has high probability of occurring.
+We also can see plots 1 and 3 are showing left and right mirror,
 and plot 2 is in the middle.
 % ( TODO: This is related to defalut $phi$ value. 
 % Need to check the detial reason.)
@@ -456,24 +456,24 @@ and plot 2 is in the middle.
 \clearpage
 
 % phi
-\subsection{Effect of Different $\phi$ Values}
-The parameters $\phi$ represent the ordinal effect for each category, influencing the distribution shape across ordered categories. Each category has a distinct $\phi$ value that modulates the density within that category, affecting the probability of observing certain sample values within clusters.
-Importantly, the $\phi$ values must start from 0 and the $\phi$ value of the last category must be 1. In the ordered stereotype model, the $\phi$ values must also follow a sequential order. 
+\subsection{Effect of Different $\bm{\phi}$ Values}
+The parameters $\bm{\phi}$ represent the ordinal effect for each category, influencing the distribution shape across ordered categories. Each category has a distinct $\bm{\phi}$ value that modulates the density within that category, affecting the probability of observing certain sample values within clusters.
+Importantly, the $\bm{\phi}$ values must start from 0 and the $\bm{\phi}$ value of the last category must be 1. In the ordered stereotype model, the $\bm{\phi}$ values must also follow a sequential order. 
 To evaluate the impact of different $\phi$ values, we consider the following configurations:
 \[
 \bm{\phi}^{(1)} = \mathbf{c}(0, 0.2, 1), \quad \bm{\phi}^{(2)} = \mathbf{c}(0, 0.5, 1), \quad \bm{\phi}^{(3)} = \mathbf{c}(0, 0.8, 1).
 \]
 As shown in Figure~\ref{fig:phi}, 
-when the probability associated with the second category increases (as $\phi$ values rise), 
+when the probability associated with the second category increases (as $\bm{\phi}$ values rise), 
 the density distribution changes significantly between the clusters. 
 Specifically, in Cluster 1, there is a slight decrease in the density of the second category, 
 while Cluster 2 exhibits a clear increase in the density of the same category. 
-This indicates that higher $\phi$ values lead to a greater disparity 
+This indicates that higher $\bm{\phi}$ values lead to a greater disparity 
 in the density distributions between the clusters, 
-particularly affecting the category with the increased $\phi$ value.
+particularly affecting the category with the increased $\bm{\phi}$ value.
 
-Overall, these results suggest that larger $\phi$ values amplify the differences in density between categories across clusters, 
-with a more pronounced effect on the cluster associated with the higher $\phi$ values.
+Overall, these results suggest that larger $\bm{\phi}$ values amplify the differences in density between categories across clusters, 
+with a more pronounced effect on the cluster associated with the higher $\bm{\phi}$ values.
 
 \begin{figure}[htbp!]
   \centering
@@ -481,53 +481,65 @@ with a more pronounced effect on the cluster associated with the higher $\phi$ v
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/phi.png}
   \end{subfigure}
-  \caption{Effect on category distribution from different $\phi$ values}
+  \caption{Effect on category distribution from different $\bm{\phi}$ values}
   \label{fig:phi}
 \end{figure}
 
 % beta
-\subsection{Effect of different $\beta$ values}
-The parameters $\beta$ represent the effects of each variable in the data. 
-Figure~\ref{fig:beta} illustrates three different sets of $\beta$ values across five variables. 
-When the $\beta$ values are close to zero, the impact on the data distribution is minimal. 
-In Figure~\ref{fig:beta} a, the sampling distributions are nearly identical to the scenario where $\beta = 0$, 
+\subsection{Effect of different $\bm{\beta}$ values}
+The parameters $\bm{\beta}$ represent the effects of each variable in the data. 
+To evaluate the impact of different $\bm{\beta}$ values, we consider the following configurations:
+\[
+\bm{\beta}^{(1)} = \mathbf{c}(-0.1, -0.05, 0, 0.05, 0.1), \quad 
+\bm{\beta}^{(2)} = \mathbf{c}(-1, -0.5, 0, 0.5, 1), \quad 
+\bm{\beta}^{(3)} = \mathbf{c}(-3, -1.5, 0, 1.5, 3).
+\]
+As shown in Figure~\ref{fig:beta},  illustrates three different sets of $\bm{\beta}$ values across five variables. 
+When the $\bm{\beta}$ values are close to zero, the impact on the data distribution is minimal. 
+In Figure~\ref{fig:beta} a, the sampling distributions are nearly identical to the scenario where $\bm{\beta} = 0$, 
 indicating no significant effect from the columns. 
 As we compare Figures~\ref{fig:beta} a, b, and c, it becomes evident that the effects 
-from the columns increase as the $\beta$ values deviate further from zero.
+from the columns increase as the $\bm{\beta}$ values deviate further from zero.
 
-Additionally, negative $\beta$ values result in a higher probability of sampling from the lower categories, 
-whereas positive $\beta$ values increase the likelihood of sampling from the higher categories.
+Additionally, negative $\bm{\beta}$ values result in a higher probability of sampling from the lower categories, 
+whereas positive $\bm{\beta}$ values increase the likelihood of sampling from the higher categories.
 \begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_1.png}
-      \caption*{a. small difference between $\beta$ values}
+      \caption*{a. small difference between $\bm{\beta}$ values}
   \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_2.png}
-      \caption*{a. medium difference between $\beta$ values}
+      \caption*{a. medium difference between $\bm{\beta}$ values}
     \end{subfigure}
 
   \begin{subfigure}{1.0\textwidth}
       \centering
       \includegraphics[width=\textwidth]{images/para_sim/beta_3.png}
-      \caption*{a. large difference between $\beta$ values}
+      \caption*{a. large difference between $\bm{\beta}$ values}
   \end{subfigure}
   
-  \caption{Effect on category distribution from different $\beta$ values. The columns left to right show five different variables, one with each beta value.}
+  \caption{Effect on category distribution from different $\bm{\beta}$ values. The columns left to right show five different variables, one with each beta value.}
   \label{fig:beta}
 \end{figure}
 
 \clearpage
 
 % pi
-\subsection{Effect of Different $\pi$ Values}
-In finite mixtures the $\pi$ parameters affect the sample size of each cluster. 
-In Figure~\ref{fig:pi} shows when one $\pi$ value is small it corresponds to a smaller sample size, and when one $\pi$ value is larger then the cluster has more sample size.
-When both $\pi$ values are the same then the overall sample sizes are similar.
+\subsection{Effect of Different $\bm{\pi}$ Values}
+In finite mixtures the $\bm{\pi}$ parameters affect the sample size of each cluster. 
+we consider the following configurations:
+\[
+\bm{\pi}^{(1)} = \mathbf{c}(0.1, 0.9), \quad 
+\bm{\pi}^{(2)} = \mathbf{c}(0.5, 0.5), \quad 
+\bm{\pi}^{(3)} = \mathbf{c}(0.9, 0.1).
+\]
+In Figure~\ref{fig:pi} shows when one $\bm{\pi}$ value is small it corresponds to a smaller sample size, and when one $\bm{\pi}$ value is larger then the cluster has more sample size.
+When both $\bm{\pi}$ values are the same then the overall sample sizes are similar.
 \begin{figure}[htbp!]
   \centering
   \begin{subfigure}{1.0\textwidth}
