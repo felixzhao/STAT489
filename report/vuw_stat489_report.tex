@@ -662,6 +662,60 @@ Conversely, the Normal Distribution simulations aimed to evaluate the model’s 
 Finally, we compared the outcomes of the OSM and Normal Distribution simulations to assess the model’s consistency and adaptability across different simulation types. This comparison offers a comprehensive understanding of the model’s strengths and limitations in handling diverse data distributions and clustering complexities, thereby clarifying its practical utility for clustering ordinal data in FMM applications.
 \subsection{Prediction with OSM simulate}
 
+\subsubsection{Prediction with simplest model}
+
+This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). These experiments involoved $\mu$, $\phi$ and $\alpha$ only.
+
+\begin{table}[htbp!]
+  \centering
+
+  % Title above all tables
+  \caption*{\textbf{Confusion matrices for 2 clusters with different numbers of columns with simplest model}}
+
+  % First row of tables (2 side by side)
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 176 & 9 \\
+                        & 2 & 14 & 401 \\
+    \end{tabular}
+    \caption{20 Ys, Accuracy: 0.9617}
+    \label{tab:20_ys}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 174 & 7 \\
+                        & 2 & 4 & 415 \\
+    \end{tabular}
+    \caption{30 Ys, Accuracy: 0.9817}
+    \label{tab:30_ys}
+  \end{minipage}
+  
+  \vspace{1em} % Space between rows
+  
+  % Second row (1 table centered)
+  \begin{minipage}{0.6\textwidth}
+    \centering
+    \begin{tabular}{c|c|c|c}
+              & \textbf{Reference} & 1 & 2 \\
+    \hline
+    \textbf{Prediction} & 1 & 183 & 2 \\
+                        & 2 & 0 & 415 \\
+    \end{tabular}
+    \caption{50 Ys, Accuracy: 0.9967}
+    \label{tab:50_ys}
+  \end{minipage}
+
+\end{table}
+
+\clearpage
+
 \subsubsection*{Prediction with Different Numbers of \( Y \) Variables}
 
 This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). The parameters used in this experiment are as follows:
@@ -688,7 +742,7 @@ The confusion matrices for the predictions in these experiments are shown in Tab
 
 From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( Y \) values increases, the prediction accuracy also improves. 
 This improvement suggests that a larger number of response variables provide more information for distinguishing between clusters, leading to better model performance. 
-Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more covariate data enhances the clustering capability of the model.
+Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values to 0.9983 for 50 \( Y \) values, indicating that the availability of more variables enhances the clustering capability of the model.
 
 \subsubsection*{Prediction with Different Numbers of Clusters}
 
@@ -846,7 +900,7 @@ In this experiment, we attempted to identify 8 distinct clusters using only 20 v
 
 The confusion matrix in Table~\ref{tab:8_clu} indicates that the fitted model tended to favor a lower number of clusters, with high counts in clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective number of clusters closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
 
-Additionally, it is evident from the confusion matrix that there is a concentration of correct predictions in the lower-numbered clusters, with predictions being more accurate in low-level clusters and less accurate for higher-numbered clusters. This implies that the model was able to identify some separation in the data, but the limited number of \(Y\) values hindered its ability to fully capture the complexity required for 8 distinct clusters.
+Although too few clusters have been identified, most of the observations assigned to cluster 1 are from lower-numbered clusters in the true model, and most of the observations assigned to clusters 7 and 8 are from higher-numbered clusters in the true model. This implies that the algorithm was able to separate out some of the clusters correctly, it just did not have enough data to separate out additional distinct clusters (as showing in table ~\ref{tab:8_clu}).
 
 To address this issue, we increased the number of \(Y\) variables to 100, providing significantly more information for the clustering task. 
 With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
@@ -1205,13 +1259,13 @@ The replication study revealed the robustness of our model, with a low standard 
 While the results presented in this paper show promising advancements in cluster prediction for ordinal data, several future directions could further enhance the applicability and performance of the proposed methodology:
 
 \begin{itemize}
+    \item \textbf{Exploring the Impact of Covariates}: Although this study did not examine the effect of covariates in the clustering process, future work could explore the impact of additional covariates and complex interactions between covariates and clusters. Investigating these effects could provide deeper insights into how various factors contribute to the clustering structure, potentially enhancing the model's interpretability and application, and I prepared the algorithm for this feature, but do not have time to run the simulations in this work.
+
     \item \textbf{Integration with Machine Learning Techniques}: One potential future direction is to integrate traditional statistical models like OSM with modern machine learning techniques, such as deep learning. This hybrid approach could improve the model's ability to capture complex relationships in large, heterogeneous datasets while maintaining interpretability.
 
     \item \textbf{Expanding to Higher-Dimensional Data}: The current work focused on scenarios involving two to five clusters. Expanding the methodology to handle more complex, higher-dimensional data with a larger number of clusters could provide valuable insights into its scalability and efficiency. Additional research is needed to explore strategies for improving accuracy when predicting a greater number of clusters, particularly when available data is limited.
 
-    \item \textbf{Real-World Data Validation}: Although our simulations demonstrated the robustness and effectiveness of the proposed model, future research should involve validating the model on real-world ordinal datasets from various domains, such as social sciences, healthcare, or market research. This step is critical to assess the practical utility of the model and ensure its generalizability beyond the controlled environment of simulated data.
-
-    \item \textbf{Exploring the Impact of Covariates}: Although this study did not examine the effect of covariates in the clustering process, future work could explore the impact of additional covariates and complex interactions between covariates and clusters. Investigating these effects could provide deeper insights into how various factors contribute to the clustering structure, potentially enhancing the model's interpretability and application.
+    \item \textbf{Real-World Data Validation}: Although our simulations demonstrated the robustness and effectiveness of the proposed model, future research should involve validating the model on real-world ordinal datasets from various domains, such as social sciences, healthcare, or market research. We will use datasets which we known the number of clusters already. This step is critical to assess the practical utility of the model and ensure its generalizability beyond the controlled environment of simulated data.
 
     \item \textbf{Enhanced Handling of Label Switching}: Although our deterministic relabeling strategy effectively mitigated label switching, further work is needed to develop more sophisticated techniques that can handle label switching in a wider variety of clustering contexts. This is especially important for large-scale clustering applications involving many clusters.
 
