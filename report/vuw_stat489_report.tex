@@ -678,6 +678,9 @@ Finally, we compared the outcomes of the OSM and Normal Distribution simulations
 \subsubsection{Prediction with simplest model}
 
 This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). These experiments involoved $\mu$, $\phi$ and $\alpha$ only.
+The prediction results confusion Matrices and accuracy are showing in Table ~\ref*{tab:simple_20_ys}, ~\ref*{tab:simple_30_ys} and ~\ref*{tab:simple_50_ys}. 
+These preliminary results suggest a potential relationship between prediction accuracy and the chosen parameters. 
+A more detailed analysis will be presented in the subsequent experiments to explore this relationship further.
 
 \begin{table}[htbp!]
   \centering
@@ -695,7 +698,7 @@ This experiment aims to evaluate the effect of different numbers of response var
                         & 2 & 14 & 401 \\
     \end{tabular}
     \caption{20 Ys, Accuracy: 0.9617}
-    \label{tab:20_ys}
+    \label{tab:simple_20_ys}
   \end{minipage}
   \hfill
   \begin{minipage}{0.45\textwidth}
@@ -707,7 +710,7 @@ This experiment aims to evaluate the effect of different numbers of response var
                         & 2 & 4 & 415 \\
     \end{tabular}
     \caption{30 Ys, Accuracy: 0.9817}
-    \label{tab:30_ys}
+    \label{tab:simple_30_ys}
   \end{minipage}
   
   \vspace{1em} % Space between rows
@@ -722,7 +725,7 @@ This experiment aims to evaluate the effect of different numbers of response var
                         & 2 & 0 & 415 \\
     \end{tabular}
     \caption{50 Ys, Accuracy: 0.9967}
-    \label{tab:50_ys}
+    \label{tab:simple_50_ys}
   \end{minipage}
 
 \end{table}
@@ -737,20 +740,20 @@ This experiment aims to evaluate the effect of different numbers of response var
 \begin{aligned}
 G &= 2, \\
 q &= 3, \\
-\alpha &= \mathbf{c}(1, -1), \\
-\mu &= \mathbf{c}(0, 0, 0), \\
-\phi &= \mathbf{c}(0, 0.5, 1), \\
-\pi &= \mathbf{c}(0.5, 0.5).
+\bm{\alpha} &= \mathbf{c}(1, -1), \\
+\bm{\mu} &= \mathbf{c}(0, 0, 0), \\
+\bm{\phi} &= \mathbf{c}(0, 0.5, 1), \\
+\bm{\pi} &= \mathbf{c}(0.5, 0.5).
 \end{aligned}
 \]
 
 Additionally, the effects of the columns, \(\bm{\beta}\), were generated from a uniform distribution over the interval \([-1, 1]\):
 
 \[
-\beta_j \sim \mathcal{U}(-1, 1)
+  \bm{\beta}_j \sim \mathcal{U}(-1, 1)
 \]
 
-For the 20 \( Y \) experiment, we generated 20 values of \(\beta\), while for the 30 and 50 \( Y \) experiments, 30 and 50 values of \(\beta\) were generated, respectively. 
+For the 20 \( Y \) experiment, we generated 20 values of \(\bm{\beta}\), while for the 30 and 50 \( Y \) experiments, 30 and 50 values of \(\bm{\beta}\) were generated, respectively. 
 The confusion matrices for the predictions in these experiments are shown in Tables~\ref{tab:20_ys}, \ref{tab:30_ys}, and \ref{tab:50_ys}, demonstrating the model's clustering prediction results for different numbers of response variables.
 
 From Figure~\ref{fig:exp_res}(a), we observe a clear trend: as the number of \( Y \) values increases, the prediction accuracy also improves. 
@@ -760,7 +763,7 @@ Specifically, the prediction accuracy increased from 0.96 for 20 \( Y \) values 
 \subsubsection*{Prediction with Different Numbers of Clusters}
 
 In the second set of experiments, we investigated the impact of varying the number of clusters while keeping most of the parameters constant. 
-The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. The \(beta\) values were again generated uniformly between -1 and 1. 
+The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. The \(\bm{beta}\) values were again generated uniformly between -1 and 1. 
 \texttt{clustord} was configured with the following parameters: \texttt{EMcycles} = 100, \texttt{startEMcycles} = 5, and \texttt{nstarts} = 5.
 
 For the three-cluster experiment, the values of \(\alpha\) were set to \(-1, 0, 1\), and the cluster proportions (\(\pi\)) were set to 0.33, 0.34, and 0.33, respectively. 
@@ -911,14 +914,16 @@ The prediction accuracy for the 8-cluster experiment was notably low, as shown i
 
 In this experiment, we attempted to identify 8 distinct clusters using only 20 values of \(Y\). This setup presented a significant limitation: the small number of \(Y\) values did not provide sufficient information to effectively distinguish between a large number of clusters. As a result, the model struggled to accurately differentiate all 8 clusters, leading to poor prediction performance.
 
-The confusion matrix in Table~\ref{tab:8_clu} indicates that the fitted model tended to favor a lower number of clusters, with high counts in clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective number of clusters closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
+The confusion matrix in Table~\ref{tab:8_clu} indicates that the fitted model tended to favor a lower number of clusters, with high counts in prediction of clusters 1, 7 and 8, and few or no observations classified into clusters 2, 3, 4, 5, and 6. This pattern suggests that the model could only effectively capture distinctions between a limited number of groupings, resulting in an effective number of clusters closer to 3 rather than the 8 clusters we initially set. Essentially, the Expectation-Maximization (EM) algorithm failed to allocate observations to all 8 clusters because the available data did not sufficiently support this level of granularity.
 
 Although too few clusters have been identified, most of the observations assigned to cluster 1 are from lower-numbered clusters in the true model, and most of the observations assigned to clusters 7 and 8 are from higher-numbered clusters in the true model. This implies that the algorithm was able to separate out some of the clusters correctly, it just did not have enough data to separate out additional distinct clusters (as showing in table ~\ref{tab:8_clu}).
 
-To address this issue, we increased the number of \(Y\) variables to 100, providing significantly more information for the clustering task. 
+To address this issue, we increased the number of \(Y\) variables to 100, providing significantly more information for the 5 clusters' clustering task. 
 With this increase, the model's prediction accuracy improved substantially, indicating that the larger number of response values allowed the EM algorithm to better differentiate between the clusters and assign data points more accurately. (see in Table~\ref{tab:5_clu_100_ys})
 
 In summary, the poor performance in the 8-cluster scenario was due to insufficient information provided by the limited \(Y\) values, which effectively limited the model's clustering capability. By increasing the number of \(Y\) values, we were able to enhance the model's accuracy and ensure more reliable cluster differentiation.
+The following experiments will give more details.
+
 
 \begin{table}[htbp!]
   \centering
@@ -1161,14 +1166,7 @@ These insights provide confidence in the consistency of the OSM approach for clu
   \end{minipage}
 \end{table}
 
-\begin{figure}[htbp!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/dist_simu/dist_5_clusters.png}
-  \caption{Normal Distribution Simulations for 5 clusters and 3 categories with same cuts at -1 and 1.
-   (The sample value if less then cut 1 is category 1, between cut 1 and cut 2 is category 2, and larger than cut 2 is category 3.)
-  }
-  \label{fig:dist_5_clus}
-\end{figure}
+
 
 % end of Normal Dist experiment
 
@@ -1183,7 +1181,7 @@ The Normal Distribution simulation with 100 columns and following distributions 
 
 The OSM simulation with 100 columns, 3 categories and $\beta$ generated from uniform Distribution. The rest parameters are following
 
-The difference in accuracy between the two tables (0.9419 vs. 1.0) highlights that the model performs more consistently with the Normal Distribution simulation, achieving flawless accuracy. 
+The difference in accuracy between the two tables \ref*{tab:5_clu_100_ys} and \ref*{tab:5_clu_norm_dist} (0.9419 vs. 1.0) highlights that the model performs more consistently with the Normal Distribution simulation, achieving flawless accuracy. 
 In contrast, the OSM simulation shows slight variability, indicating that the model may encounter some challenges when the data distribution is more complex or varied, as represented in the OSM setup.
 
 \[
@@ -1194,6 +1192,18 @@ In contrast, the OSM simulation shows slight variability, indicating that the mo
 \pi &= \mathbf{c}(0.2, 0.2, 0.2, 0.2, 0.2).
 \end{aligned}
 \]
+
+And the 5 clusters Normal distribution simulations are following Fig \ref{fig:dist_5_clus}.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/dist_simu/dist_5_clusters.png}
+  \caption{Normal Distribution Simulations for 5 clusters and 3 categories with same cuts at -1 and 1.
+   (The sample value if less then cut 1 is category 1, between cut 1 and cut 2 is category 2, and larger than cut 2 is category 3.)
+  }
+  \label{fig:dist_5_clus}
+\end{figure}
+
 
 \begin{table}[htbp!]
   \centering
@@ -1233,6 +1243,8 @@ In contrast, the OSM simulation shows slight variability, indicating that the mo
   \end{minipage}
 
 \end{table}
+
+
 
 \clearpage
 
