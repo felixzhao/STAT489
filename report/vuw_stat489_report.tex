@@ -607,9 +607,9 @@ Next, the procedure outlined in Algorithm~\ref{fig:algo} was employed to calcula
 Finally, for each new observation $\bm{Y}_i$ in the validation set, we computed the Z-score for each cluster using these standardized probabilities and assigned the observation to the cluster with the highest Z-score.
 
 Additionally, the default parameters given by EM algorithm have label switching problem.
-The label switching is the cluster parameter estimates $\alpha$ may be in a different order to the simulated clusters, which can make the predictions look more inaccurate than they actually are.
+The label switching is the cluster parameter estimates $\bm{\alpha}$ may be in a different order to the simulated clusters, which can make the predictions look more inaccurate than they actually are.
 
-In this work we reorder the fitted clusters in order of decreasing $\alpha$ then do predictions based on the reordered clusters.
+In this work we reorder the fitted clusters in order of decreasing $\bm{\alpha}$ then do predictions based on the reordered clusters.
 
 \begin{algorithm}
   \caption{Pseudocode for Calculating Cluster Probabilities}
@@ -672,12 +672,13 @@ These experiments were designed to assess the suitability of the Ordered Stereot
 
 Conversely, the Normal Distribution simulations aimed to evaluate the model’s performance under more challenging conditions where the data are not generated from the same distribution as the model fitting. By simulating data with Normal distributions, we analyzed the model’s effectiveness in classifying observations based on typical distributional structures, offering a complementary perspective on its clustering performance in structured data environments.
 
-Finally, we compared the outcomes of the OSM and Normal Distribution simulations to assess the model’s consistency and adaptability across different simulation types. This comparison offers a comprehensive understanding of the model’s strengths and limitations in handling diverse data distributions and clustering complexities, thereby clarifying its practical utility for clustering ordinal data in FMM applications.
+Finally, we compared the outcomes of the OSM and Normal Distribution simulations to assess the model’s consistency and adaptability across different simulation types. 
+This comparison offers a comprehensive understanding of the model’s strengths and limitations in handling diverse data distributions and clustering complexities, thereby clarifying its practical utility for clustering ordinal data in FMM applications.
 \subsection{Prediction with OSM simulate}
 
 \subsubsection{Prediction with simplest model}
 
-This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). These experiments involoved $\mu$, $\phi$ and $\alpha$ only.
+This experiment aims to evaluate the effect of different numbers of response variables (\( Y \)) on the clustering performance of the Ordered Stereotype Model (OSM). These experiments involoved $\bm{\mu}$, $\bm{\phi}$ and $\bm{\alpha}$ only.
 The prediction results confusion Matrices and accuracy are showing in Table ~\ref*{tab:simple_20_ys}, ~\ref*{tab:simple_30_ys} and ~\ref*{tab:simple_50_ys}. 
 These preliminary results suggest a potential relationship between prediction accuracy and the chosen parameters. 
 A more detailed analysis will be presented in the subsequent experiments to explore this relationship further.
@@ -766,8 +767,8 @@ In the second set of experiments, we investigated the impact of varying the numb
 The experiments were conducted with 2, 3, and 5 clusters, and the default parameter values were used across all cluster configurations, with 20 values of \( Y \) generated for each experiment. The \(\bm{beta}\) values were again generated uniformly between -1 and 1. 
 \texttt{clustord} was configured with the following parameters: \texttt{EMcycles} = 100, \texttt{startEMcycles} = 5, and \texttt{nstarts} = 5.
 
-For the three-cluster experiment, the values of \(\alpha\) were set to \(-1, 0, 1\), and the cluster proportions (\(\pi\)) were set to 0.33, 0.34, and 0.33, respectively. 
-In the five-cluster experiment, \(\alpha\) values were set to \(-1, -0.5, 0, 0.5, 1\), with equal cluster proportions of 0.2 for each cluster. 
+For the three-cluster experiment, the values of \(\bm{\alpha}\) were set to \(-1, 0, 1\), and the cluster proportions (\(\bm{\pi}\)) were set to 0.33, 0.34, and 0.33, respectively. 
+In the five-cluster experiment, \(\bm{\alpha}\) values were set to \(-1, -0.5, 0, 0.5, 1\), with equal cluster proportions of 0.2 for each cluster. 
 The confusion matrices for the prediction results of different cluster configurations are presented in Tables~\ref{tab:2_clu}, \ref{tab:3_clu}, and \ref{tab:5_clu}.
 
 Figure~\ref{fig:exp_res}(b) illustrates the overall prediction accuracy for different numbers of clusters. 
@@ -1179,7 +1180,7 @@ both of these two experiments are based on 2500 observations for each cluster, w
 
 The Normal Distribution simulation with 100 columns and following distributions mentioned in Figure \ref{fig:dist_5_clus}.
 
-The OSM simulation with 100 columns, 3 categories and $\beta$ generated from uniform Distribution. The rest parameters are following
+The OSM simulation with 100 columns, 3 categories and $\bm{\beta}$ generated from uniform Distribution. The rest parameters are following
 
 The difference in accuracy between the two tables \ref*{tab:5_clu_100_ys} and \ref*{tab:5_clu_norm_dist} (0.9419 vs. 1.0) highlights that the model performs more consistently with the Normal Distribution simulation, achieving flawless accuracy. 
 In contrast, the OSM simulation shows slight variability, indicating that the model may encounter some challenges when the data distribution is more complex or varied, as represented in the OSM setup.
@@ -1273,9 +1274,9 @@ model produces stable predictions irrespective of the variability introduced by 
 
 In this paper, we extended the clustering methodology for ordinal data using the Ordered Stereotype Model (OSM) within the framework of Finite Mixture Models (FMM). We focused on enabling the prediction of cluster membership for new, unlabeled data. This extension is crucial for applying ordinal data analysis in dynamic environments where new data is continuously generated, requiring efficient and accurate classification. Our approach involved constructing a prediction function that, after model parameter estimation, allows for direct cluster assignment of new observations, supported by both OSM simulations and Normal distribution-based simulations.
 
-We conducted experiments that systematically varied parameters such as the number of response variables and the number of clusters (\( G \)), as well as different configurations of the OSM model parameters (\(\alpha\), \(\mu\), \(\phi\), \(\beta\), and \(\pi\)). Our results demonstrated that the model's clustering performance improves with an increased number of response variables and that prediction accuracy decreases significantly as the number of clusters increases, emphasizing the importance of balancing model complexity with available information. The experiments with Normal distribution-based simulations further validated the robustness of our approach, with near-perfect accuracy across different cluster scenarios.
+We conducted experiments that systematically varied parameters such as the number of response variables and the number of clusters (\( G \)), as well as different configurations of the OSM model parameters (\(\bm{\alpha}\), \(\bm{\mu}\), \(\bm{\phi}\), \(\bm{\beta}\), and \(\bm{\pi}\)). Our results demonstrated that the model's clustering performance improves with an increased number of response variables and that prediction accuracy decreases significantly as the number of clusters increases, emphasizing the importance of balancing model complexity with available information. The experiments with Normal distribution-based simulations further validated the robustness of our approach, with near-perfect accuracy across different cluster scenarios.
 
-We also addressed the issue of label switching, a common challenge in clustering algorithms that employ the Expectation-Maximization (EM) approach. By implementing a reordering step to consistently align cluster labels based on the estimated probabilities of the latent variable \(\alpha\), we were able to mitigate the label switching problem, ensuring reliable evaluation of model predictions across multiple runs.
+We also addressed the issue of label switching, a common challenge in clustering algorithms that employ the Expectation-Maximization (EM) approach. By implementing a reordering step to consistently align cluster labels based on the estimated probabilities of the latent variable \(\bm{\alpha}\), we were able to mitigate the label switching problem, ensuring reliable evaluation of model predictions across multiple runs.
 
 The replication study revealed the robustness of our model, with a low standard deviation of prediction accuracy across experiments with different random seeds, reinforcing the consistency of the model's performance. This highlights the stability of our approach and its suitability for real-world applications where reliable clustering predictions are essential.
 
